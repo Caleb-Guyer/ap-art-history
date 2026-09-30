@@ -1,3 +1,4 @@
+import {CLASSICAL_WORKS,CLASSICAL_RECOMMENDATIONS,CLASSICAL_VOCAB,CLASSICAL_CONFUSIONS} from './classical-data.js?v=12';
 // Course wording comes first. Slide references are 1-based PDF pages.
 // Rulers, donors, and depicted figures are not automatically the artists.
 export const FIELDS = {
@@ -12,6 +13,7 @@ export const FIELDS = {
   culture: {label:'Culture & period', prompt:'Which culture and period?', help:'Identify the civilization. For Egyptian works, add the kingdom or period.'}
 };
 export const RECOMMENDATIONS = {
+ ...CLASSICAL_RECOMMENDATIONS,
   12: {field:'date', answer:'3000 BCE'},
   13: {field:'date', answer:'3000 BCE'},
   14: {field:'date', answer:'2700 BCE'},
@@ -203,6 +205,10 @@ export const WORKS = [
  }
 ];
 
+export const ALL_WORKS=[...WORKS,...CLASSICAL_WORKS];
+export const COLLECTIONS={'12-25':{label:'12–25',works:WORKS},'25-47':{label:'25–47',works:ALL_WORKS.filter(w=>w.id>=25)}};
+export function collectionWorks(key){return COLLECTIONS[key]?.works??COLLECTIONS['25-47'].works;}
+
 // Short study labels keep the complete source wording and accepted aliases intact.
 const shortLocations={
  12:'Uruk, Iraq',14:'Eshnunna, Iraq',16:'Ur, Iraq',17:'Giza, Egypt',
@@ -210,11 +216,11 @@ const shortLocations={
  21:'Deir el-Bahri, Egypt',22:'Amarna, Egypt',23:'Valley of the Kings, Egypt',
  25:'Dur-Sharrukin, Iraq'
 };
-const shortDetails=new Map(WORKS.flatMap(w=>[
+const shortDetails=new Map(ALL_WORKS.flatMap(w=>[
  [w.name,w.shortName],
- [w.location,shortLocations[w.id]??w.location],
- [w.artist,w.id===21?'Senenmut':'Unknown'],
- [w.material,w.id===21?'Sandstone and red granite':w.material]
+ [w.location,w.id===33?'Athens, Greece':shortLocations[w.id]??w.location],
+ [w.artist,w.id===21?'Senenmut':w.artistKnown?w.artist:'Unknown'],
+ [w.material,w.id===21?'Sandstone and red granite':w.material.replace(/\s*\([^)]*\)/g,'').trim()]
 ]));
 shortDetails.set('Unknown / unrecorded','Unknown');
 shortDetails.set('Senenmut (traditionally attributed)','Senenmut');
@@ -250,3 +256,6 @@ export const CONFUSIONS = [
  {title:'Ruler ≠ artist',items:['Narmer, Menkaure, Hammurabi, Akhenaten, and Tutankhamun are rulers, patrons, or subjects. Their names do not identify the craftspeople.','Sargon II commissioned the citadel guarded by lamassu.','Senenmut is a traditionally attributed architect for Hatshepsut’s temple, not a certain sculptor of every statue.']},
  {title:'Temple or tomb?',items:['12 · The White Temple is a sanctuary on a ziggurat.','17 · The Giza pyramids are royal tombs.','21 · Hatshepsut’s mortuary temple serves a funerary cult; it is not her tomb.']}
 ];
+
+export function collectionVocab(key){return key==='12-25'?VOCAB:CLASSICAL_VOCAB;}
+export function collectionConfusions(key){return key==='12-25'?CONFUSIONS:CLASSICAL_CONFUSIONS;}

@@ -1,324 +1,830 @@
-[
-  {
-    "id": 12,
-    "parts": [
-      {
-        "field": "name",
-        "label": "Name",
-        "text": "White Temple and its Ziggurat",
-        "spoken": "White Temple and its Ziggurat"
-      },
-      {
-        "field": "material",
-        "label": "Material",
-        "text": "Mud brick",
-        "spoken": "Mud brick"
-      },
-      {
-        "field": "recommendation",
-        "label": "Recommendation",
-        "text": "3000 BCE",
-        "spoken": "Three thousand B. C. E."
-      }
-    ]
-  },
-  {
-    "id": 13,
-    "parts": [
-      {
-        "field": "name",
-        "label": "Name",
-        "text": "Palette of King Narmer",
-        "spoken": "Palette of King Narmer"
-      },
-      {
-        "field": "material",
-        "label": "Material",
-        "text": "Greywacke",
-        "spoken": "gray wack"
-      },
-      {
-        "field": "recommendation",
-        "label": "Recommendation",
-        "text": "3000 BCE",
-        "spoken": "Three thousand B. C. E."
-      }
-    ]
-  },
-  {
-    "id": 14,
-    "parts": [
-      {
-        "field": "name",
-        "label": "Name",
-        "text": "Statues of Votive Figures",
-        "spoken": "Statues of Votive Figures"
-      },
-      {
-        "field": "material",
-        "label": "Material",
-        "text": "Gypsum inlaid with shell and black limestone",
-        "spoken": "Gypsum inlaid with shell and black limestone"
-      },
-      {
-        "field": "recommendation",
-        "label": "Recommendation",
-        "text": "2700 BCE",
-        "spoken": "Twenty seven hundred B. C. E."
-      }
-    ]
-  },
-  {
-    "id": 15,
-    "parts": [
-      {
-        "field": "name",
-        "label": "Name",
-        "text": "Seated Scribe",
-        "spoken": "Seated Scribe"
-      },
-      {
-        "field": "material",
-        "label": "Material",
-        "text": "Painted limestone",
-        "spoken": "Painted limestone"
-      },
-      {
-        "field": "recommendation",
-        "label": "Recommendation",
-        "text": "2500 BCE",
-        "spoken": "Twenty five hundred B. C. E."
-      }
-    ]
-  },
-  {
-    "id": 16,
-    "parts": [
-      {
-        "field": "name",
-        "label": "Name",
-        "text": "Standard of Ur",
-        "spoken": "Standard of Oor"
-      },
-      {
-        "field": "material",
-        "label": "Material",
-        "text": "Wood inlaid with shell, lapis lazuli, and red limestone",
-        "spoken": "Wood inlaid with shell, lap iss laz uh lee, and red limestone"
-      },
-      {
-        "field": "recommendation",
-        "label": "Recommendation",
-        "text": "2500 BCE",
-        "spoken": "Twenty five hundred B. C. E."
-      }
-    ]
-  },
-  {
-    "id": 17,
-    "parts": [
-      {
-        "field": "name",
-        "label": "Name",
-        "text": "Great Pyramids and Great Sphinx",
-        "spoken": "Great Pyramids and Great Sphinx"
-      },
-      {
-        "field": "material",
-        "label": "Material",
-        "text": "Cut limestone",
-        "spoken": "Cut limestone"
-      },
-      {
-        "field": "recommendation",
-        "label": "Recommendation",
-        "text": "2500 BCE",
-        "spoken": "Twenty five hundred B. C. E."
-      }
-    ]
-  },
-  {
-    "id": 18,
-    "parts": [
-      {
-        "field": "name",
-        "label": "Name",
-        "text": "King Menkaure and Queen",
-        "spoken": "King Men cow ray and Queen"
-      },
-      {
-        "field": "material",
-        "label": "Material",
-        "text": "Greywacke",
-        "spoken": "gray wack"
-      },
-      {
-        "field": "recommendation",
-        "label": "Recommendation",
-        "text": "Giza, Egypt",
-        "spoken": "Giza, Egypt"
-      }
-    ]
-  },
-  {
-    "id": 19,
-    "parts": [
-      {
-        "field": "name",
-        "label": "Name",
-        "text": "Law Code of Hammurabi",
-        "spoken": "Law Code of Hammurabi"
-      },
-      {
-        "field": "material",
-        "label": "Material",
-        "text": "Basalt",
-        "spoken": "Basalt"
-      },
-      {
-        "field": "recommendation",
-        "label": "Recommendation",
-        "text": "1750 BCE",
-        "spoken": "Seventeen fifty B. C. E."
-      }
-    ]
-  },
-  {
-    "id": 20,
-    "parts": [
-      {
-        "field": "name",
-        "label": "Name",
-        "text": "Temple of Amun-Re",
-        "spoken": "Temple of Ah moon Ray"
-      },
-      {
-        "field": "material",
-        "label": "Material",
-        "text": "Cut sandstone and mud brick",
-        "spoken": "Cut sandstone and mud brick"
-      },
-      {
-        "field": "recommendation",
-        "label": "Recommendation",
-        "text": "Egyptian, New Kingdom",
-        "spoken": "Egyptian, New Kingdom"
-      }
-    ]
-  },
-  {
-    "id": 21,
-    "parts": [
-      {
-        "field": "name",
-        "label": "Name",
-        "text": "Mortuary Temple of Hatshepsut",
-        "spoken": "Mortuary Temple of Hat shep soot"
-      },
-      {
-        "field": "material",
-        "label": "Material",
-        "text": "Sandstone and red granite",
-        "spoken": "Sandstone and red granite"
-      },
-      {
-        "field": "recommendation",
-        "label": "Recommendation",
-        "text": "Egyptian, New Kingdom",
-        "spoken": "Egyptian, New Kingdom"
-      }
-    ]
-  },
-  {
-    "id": 22,
-    "parts": [
-      {
-        "field": "name",
-        "label": "Name",
-        "text": "Akhenaten, Nefertiti, and Three Daughters",
-        "spoken": "Ah keh nah ten, Nef er tee tee, and Three Daughters"
-      },
-      {
-        "field": "material",
-        "label": "Material",
-        "text": "Limestone",
-        "spoken": "Limestone"
-      },
-      {
-        "field": "recommendation",
-        "label": "Recommendation",
-        "text": "Amarna, Egypt",
-        "spoken": "Amarna, Egypt"
-      }
-    ]
-  },
-  {
-    "id": 23,
-    "parts": [
-      {
-        "field": "name",
-        "label": "Name",
-        "text": "Innermost Coffin of Tutankhamun",
-        "spoken": "Innermost Coffin of Toot ahn kah moon"
-      },
-      {
-        "field": "material",
-        "label": "Material",
-        "text": "Gold with inlay of enamel and semiprecious stones",
-        "spoken": "Gold with inlay of enamel and semiprecious stones"
-      },
-      {
-        "field": "recommendation",
-        "label": "Recommendation",
-        "text": "Egyptian, New Kingdom",
-        "spoken": "Egyptian, New Kingdom"
-      }
-    ]
-  },
-  {
-    "id": 24,
-    "parts": [
-      {
-        "field": "name",
-        "label": "Name",
-        "text": "Last Judgment of Hunefer",
-        "spoken": "Last Judgment of Hoo neh fer"
-      },
-      {
-        "field": "material",
-        "label": "Material",
-        "text": "Painted papyrus scroll",
-        "spoken": "Painted papyrus scroll"
-      },
-      {
-        "field": "recommendation",
-        "label": "Recommendation",
-        "text": "Egypt",
-        "spoken": "Egypt"
-      }
-    ]
-  },
-  {
-    "id": 25,
-    "parts": [
-      {
-        "field": "name",
-        "label": "Name",
-        "text": "Lamassu",
-        "spoken": "Lah mah soo"
-      },
-      {
-        "field": "material",
-        "label": "Material",
-        "text": "Alabaster",
-        "spoken": "Alabaster"
-      },
-      {
-        "field": "recommendation",
-        "label": "Recommendation",
-        "text": "720 BCE",
-        "spoken": "Seven twenty B. C. E."
-      }
-    ]
-  }
+﻿[
+    {
+        "id":  12,
+        "parts":  [
+                      {
+                          "field":  "name",
+                          "label":  "Name",
+                          "text":  "White Temple and its Ziggurat",
+                          "spoken":  "White Temple and its Ziggurat"
+                      },
+                      {
+                          "field":  "material",
+                          "label":  "Material",
+                          "text":  "Mud brick",
+                          "spoken":  "Mud brick"
+                      },
+                      {
+                          "field":  "recommendation",
+                          "label":  "Recommendation",
+                          "text":  "3000 BCE",
+                          "spoken":  "Three thousand B. C. E."
+                      }
+                  ]
+    },
+    {
+        "id":  13,
+        "parts":  [
+                      {
+                          "field":  "name",
+                          "label":  "Name",
+                          "text":  "Palette of King Narmer",
+                          "spoken":  "Palette of King Narmer"
+                      },
+                      {
+                          "field":  "material",
+                          "label":  "Material",
+                          "text":  "Greywacke",
+                          "spoken":  "gray wack"
+                      },
+                      {
+                          "field":  "recommendation",
+                          "label":  "Recommendation",
+                          "text":  "3000 BCE",
+                          "spoken":  "Three thousand B. C. E."
+                      }
+                  ]
+    },
+    {
+        "id":  14,
+        "parts":  [
+                      {
+                          "field":  "name",
+                          "label":  "Name",
+                          "text":  "Statues of Votive Figures",
+                          "spoken":  "Statues of Votive Figures"
+                      },
+                      {
+                          "field":  "material",
+                          "label":  "Material",
+                          "text":  "Gypsum inlaid with shell and black limestone",
+                          "spoken":  "Gypsum inlaid with shell and black limestone"
+                      },
+                      {
+                          "field":  "recommendation",
+                          "label":  "Recommendation",
+                          "text":  "2700 BCE",
+                          "spoken":  "Twenty seven hundred B. C. E."
+                      }
+                  ]
+    },
+    {
+        "id":  15,
+        "parts":  [
+                      {
+                          "field":  "name",
+                          "label":  "Name",
+                          "text":  "Seated Scribe",
+                          "spoken":  "Seated Scribe"
+                      },
+                      {
+                          "field":  "material",
+                          "label":  "Material",
+                          "text":  "Painted limestone",
+                          "spoken":  "Painted limestone"
+                      },
+                      {
+                          "field":  "recommendation",
+                          "label":  "Recommendation",
+                          "text":  "2500 BCE",
+                          "spoken":  "Twenty five hundred B. C. E."
+                      }
+                  ]
+    },
+    {
+        "id":  16,
+        "parts":  [
+                      {
+                          "field":  "name",
+                          "label":  "Name",
+                          "text":  "Standard of Ur",
+                          "spoken":  "Standard of Oor"
+                      },
+                      {
+                          "field":  "material",
+                          "label":  "Material",
+                          "text":  "Wood inlaid with shell, lapis lazuli, and red limestone",
+                          "spoken":  "Wood inlaid with shell, lap iss laz uh lee, and red limestone"
+                      },
+                      {
+                          "field":  "recommendation",
+                          "label":  "Recommendation",
+                          "text":  "2500 BCE",
+                          "spoken":  "Twenty five hundred B. C. E."
+                      }
+                  ]
+    },
+    {
+        "id":  17,
+        "parts":  [
+                      {
+                          "field":  "name",
+                          "label":  "Name",
+                          "text":  "Great Pyramids and Great Sphinx",
+                          "spoken":  "Great Pyramids and Great Sphinx"
+                      },
+                      {
+                          "field":  "material",
+                          "label":  "Material",
+                          "text":  "Cut limestone",
+                          "spoken":  "Cut limestone"
+                      },
+                      {
+                          "field":  "recommendation",
+                          "label":  "Recommendation",
+                          "text":  "2500 BCE",
+                          "spoken":  "Twenty five hundred B. C. E."
+                      }
+                  ]
+    },
+    {
+        "id":  18,
+        "parts":  [
+                      {
+                          "field":  "name",
+                          "label":  "Name",
+                          "text":  "King Menkaure and Queen",
+                          "spoken":  "King Men cow ray and Queen"
+                      },
+                      {
+                          "field":  "material",
+                          "label":  "Material",
+                          "text":  "Greywacke",
+                          "spoken":  "gray wack"
+                      },
+                      {
+                          "field":  "recommendation",
+                          "label":  "Recommendation",
+                          "text":  "Giza, Egypt",
+                          "spoken":  "Giza, Egypt"
+                      }
+                  ]
+    },
+    {
+        "id":  19,
+        "parts":  [
+                      {
+                          "field":  "name",
+                          "label":  "Name",
+                          "text":  "Law Code of Hammurabi",
+                          "spoken":  "Law Code of Hammurabi"
+                      },
+                      {
+                          "field":  "material",
+                          "label":  "Material",
+                          "text":  "Basalt",
+                          "spoken":  "Basalt"
+                      },
+                      {
+                          "field":  "recommendation",
+                          "label":  "Recommendation",
+                          "text":  "1750 BCE",
+                          "spoken":  "Seventeen fifty B. C. E."
+                      }
+                  ]
+    },
+    {
+        "id":  20,
+        "parts":  [
+                      {
+                          "field":  "name",
+                          "label":  "Name",
+                          "text":  "Temple of Amun-Re",
+                          "spoken":  "Temple of Ah moon Ray"
+                      },
+                      {
+                          "field":  "material",
+                          "label":  "Material",
+                          "text":  "Cut sandstone and mud brick",
+                          "spoken":  "Cut sandstone and mud brick"
+                      },
+                      {
+                          "field":  "recommendation",
+                          "label":  "Recommendation",
+                          "text":  "Egyptian, New Kingdom",
+                          "spoken":  "Egyptian, New Kingdom"
+                      }
+                  ]
+    },
+    {
+        "id":  21,
+        "parts":  [
+                      {
+                          "field":  "name",
+                          "label":  "Name",
+                          "text":  "Mortuary Temple of Hatshepsut",
+                          "spoken":  "Mortuary Temple of Hat shep soot"
+                      },
+                      {
+                          "field":  "material",
+                          "label":  "Material",
+                          "text":  "Sandstone and red granite",
+                          "spoken":  "Sandstone and red granite"
+                      },
+                      {
+                          "field":  "recommendation",
+                          "label":  "Recommendation",
+                          "text":  "Egyptian, New Kingdom",
+                          "spoken":  "Egyptian, New Kingdom"
+                      }
+                  ]
+    },
+    {
+        "id":  22,
+        "parts":  [
+                      {
+                          "field":  "name",
+                          "label":  "Name",
+                          "text":  "Akhenaten, Nefertiti, and Three Daughters",
+                          "spoken":  "Ah keh nah ten, Nef er tee tee, and Three Daughters"
+                      },
+                      {
+                          "field":  "material",
+                          "label":  "Material",
+                          "text":  "Limestone",
+                          "spoken":  "Limestone"
+                      },
+                      {
+                          "field":  "recommendation",
+                          "label":  "Recommendation",
+                          "text":  "Amarna, Egypt",
+                          "spoken":  "Amarna, Egypt"
+                      }
+                  ]
+    },
+    {
+        "id":  23,
+        "parts":  [
+                      {
+                          "field":  "name",
+                          "label":  "Name",
+                          "text":  "Innermost Coffin of Tutankhamun",
+                          "spoken":  "Innermost Coffin of Toot ahn kah moon"
+                      },
+                      {
+                          "field":  "material",
+                          "label":  "Material",
+                          "text":  "Gold with inlay of enamel and semiprecious stones",
+                          "spoken":  "Gold with inlay of enamel and semiprecious stones"
+                      },
+                      {
+                          "field":  "recommendation",
+                          "label":  "Recommendation",
+                          "text":  "Egyptian, New Kingdom",
+                          "spoken":  "Egyptian, New Kingdom"
+                      }
+                  ]
+    },
+    {
+        "id":  24,
+        "parts":  [
+                      {
+                          "field":  "name",
+                          "label":  "Name",
+                          "text":  "Last Judgment of Hunefer",
+                          "spoken":  "Last Judgment of Hoo neh fer"
+                      },
+                      {
+                          "field":  "material",
+                          "label":  "Material",
+                          "text":  "Painted papyrus scroll",
+                          "spoken":  "Painted papyrus scroll"
+                      },
+                      {
+                          "field":  "recommendation",
+                          "label":  "Recommendation",
+                          "text":  "Egypt",
+                          "spoken":  "Egypt"
+                      }
+                  ]
+    },
+    {
+        "id":  25,
+        "parts":  [
+                      {
+                          "field":  "name",
+                          "label":  "Name",
+                          "text":  "Lamassu",
+                          "spoken":  "Lah mah soo"
+                      },
+                      {
+                          "field":  "material",
+                          "label":  "Material",
+                          "text":  "Alabaster",
+                          "spoken":  "Alabaster"
+                      },
+                      {
+                          "field":  "recommendation",
+                          "label":  "Recommendation",
+                          "text":  "720 BCE",
+                          "spoken":  "Seven twenty B. C. E."
+                      }
+                  ]
+    },
+    {
+        "id":  26,
+        "parts":  [
+                      {
+                          "field":  "name",
+                          "label":  "Name",
+                          "text":  "Athenian Agora",
+                          "spoken":  "Athenian Agora"
+                      },
+                      {
+                          "field":  "material",
+                          "label":  "Material",
+                          "text":  "Plan",
+                          "spoken":  "Plan"
+                      },
+                      {
+                          "field":  "recommendation",
+                          "label":  "Recommendation",
+                          "text":  "Athens, Greece",
+                          "spoken":  "Athens, Greece"
+                      }
+                  ]
+    },
+    {
+        "id":  27,
+        "parts":  [
+                      {
+                          "field":  "name",
+                          "label":  "Name",
+                          "text":  "Anavysos Kouros",
+                          "spoken":  "Ah nah vee sos Koo ross"
+                      },
+                      {
+                          "field":  "material",
+                          "label":  "Material",
+                          "text":  "Marble with remnants of paint",
+                          "spoken":  "Marble with remnants of paint"
+                      },
+                      {
+                          "field":  "recommendation",
+                          "label":  "Recommendation",
+                          "text":  "530 BCE",
+                          "spoken":  "530 B. C. E."
+                      }
+                  ]
+    },
+    {
+        "id":  28,
+        "parts":  [
+                      {
+                          "field":  "name",
+                          "label":  "Name",
+                          "text":  "Peplos Kore",
+                          "spoken":  "Pep loss Kor ay"
+                      },
+                      {
+                          "field":  "material",
+                          "label":  "Material",
+                          "text":  "Marble with painted details",
+                          "spoken":  "Marble with painted details"
+                      },
+                      {
+                          "field":  "recommendation",
+                          "label":  "Recommendation",
+                          "text":  "530 BCE",
+                          "spoken":  "530 B. C. E."
+                      }
+                  ]
+    },
+    {
+        "id":  29,
+        "parts":  [
+                      {
+                          "field":  "name",
+                          "label":  "Name",
+                          "text":  "Sarcophagus of the Spouses",
+                          "spoken":  "Sarcophagus of the Spouses"
+                      },
+                      {
+                          "field":  "material",
+                          "label":  "Material",
+                          "text":  "Terra cotta",
+                          "spoken":  "terra cotta"
+                      },
+                      {
+                          "field":  "recommendation",
+                          "label":  "Recommendation",
+                          "text":  "Etruscan",
+                          "spoken":  "Etruscan"
+                      }
+                  ]
+    },
+    {
+        "id":  30,
+        "parts":  [
+                      {
+                          "field":  "name",
+                          "label":  "Name",
+                          "text":  "Audience Hall of Darius and Xerxes",
+                          "spoken":  "Audience Hall of Darius and Xerxes"
+                      },
+                      {
+                          "field":  "material",
+                          "label":  "Material",
+                          "text":  "Limestone",
+                          "spoken":  "Limestone"
+                      },
+                      {
+                          "field":  "recommendation",
+                          "label":  "Recommendation",
+                          "text":  "Persian",
+                          "spoken":  "Persian"
+                      }
+                  ]
+    },
+    {
+        "id":  31,
+        "parts":  [
+                      {
+                          "field":  "name",
+                          "label":  "Name",
+                          "text":  "Temple of Minerva and Sculpture of Apollo",
+                          "spoken":  "Temple of Minerva and Sculpture of Apollo"
+                      },
+                      {
+                          "field":  "material",
+                          "label":  "Material",
+                          "text":  "Wood, mud brick or tufa; terra cotta sculpture",
+                          "spoken":  "Wood, mud brick or tufa; terra cotta sculpture"
+                      },
+                      {
+                          "field":  "recommendation",
+                          "label":  "Recommendation",
+                          "text":  "Etruscan",
+                          "spoken":  "Etruscan"
+                      }
+                  ]
+    },
+    {
+        "id":  32,
+        "parts":  [
+                      {
+                          "field":  "name",
+                          "label":  "Name",
+                          "text":  "Tomb of the Triclinium",
+                          "spoken":  "Tomb of the Triclinium"
+                      },
+                      {
+                          "field":  "material",
+                          "label":  "Material",
+                          "text":  "Tufa and fresco",
+                          "spoken":  "Tufa and fresco"
+                      },
+                      {
+                          "field":  "recommendation",
+                          "label":  "Recommendation",
+                          "text":  "Etruscan",
+                          "spoken":  "Etruscan"
+                      }
+                  ]
+    },
+    {
+        "id":  33,
+        "parts":  [
+                      {
+                          "field":  "name",
+                          "label":  "Name",
+                          "text":  "Niobides Krater",
+                          "spoken":  "Nye oh bih deez Krater"
+                      },
+                      {
+                          "field":  "material",
+                          "label":  "Material",
+                          "text":  "Clay, red-figure technique",
+                          "spoken":  "Clay, red-figure technique"
+                      },
+                      {
+                          "field":  "recommendation",
+                          "label":  "Recommendation",
+                          "text":  "450 BCE",
+                          "spoken":  "450 B. C. E."
+                      }
+                  ]
+    },
+    {
+        "id":  34,
+        "parts":  [
+                      {
+                          "field":  "name",
+                          "label":  "Name",
+                          "text":  "Doryphoros",
+                          "spoken":  "Dor if or oss"
+                      },
+                      {
+                          "field":  "material",
+                          "label":  "Material",
+                          "text":  "Marble copy of a bronze original",
+                          "spoken":  "Marble copy of a bronze original"
+                      },
+                      {
+                          "field":  "recommendation",
+                          "label":  "Recommendation",
+                          "text":  "450 BCE",
+                          "spoken":  "450 B. C. E."
+                      }
+                  ]
+    },
+    {
+        "id":  35,
+        "parts":  [
+                      {
+                          "field":  "name",
+                          "label":  "Name",
+                          "text":  "Acropolis",
+                          "spoken":  "Acropolis"
+                      },
+                      {
+                          "field":  "material",
+                          "label":  "Material",
+                          "text":  "Marble",
+                          "spoken":  "Marble"
+                      },
+                      {
+                          "field":  "recommendation",
+                          "label":  "Recommendation",
+                          "text":  "Athens, Greece",
+                          "spoken":  "Athens, Greece"
+                      }
+                  ]
+    },
+    {
+        "id":  36,
+        "parts":  [
+                      {
+                          "field":  "name",
+                          "label":  "Name",
+                          "text":  "Grave Stele of Hegeso",
+                          "spoken":  "Grave Stele of Heg eh so"
+                      },
+                      {
+                          "field":  "material",
+                          "label":  "Material",
+                          "text":  "Marble and paint",
+                          "spoken":  "Marble and paint"
+                      },
+                      {
+                          "field":  "recommendation",
+                          "label":  "Recommendation",
+                          "text":  "Athens, Greece",
+                          "spoken":  "Athens, Greece"
+                      }
+                  ]
+    },
+    {
+        "id":  37,
+        "parts":  [
+                      {
+                          "field":  "name",
+                          "label":  "Name",
+                          "text":  "Winged Victory of Samothrace",
+                          "spoken":  "Winged Victory of Samothrace"
+                      },
+                      {
+                          "field":  "material",
+                          "label":  "Material",
+                          "text":  "Marble",
+                          "spoken":  "Marble"
+                      },
+                      {
+                          "field":  "recommendation",
+                          "label":  "Recommendation",
+                          "text":  "Samothrace, Greece",
+                          "spoken":  "Samothrace, Greece"
+                      }
+                  ]
+    },
+    {
+        "id":  38,
+        "parts":  [
+                      {
+                          "field":  "name",
+                          "label":  "Name",
+                          "text":  "Great Altar of Zeus and Athena at Pergamon",
+                          "spoken":  "Great Altar of Zeus and Athena at Per gah mon"
+                      },
+                      {
+                          "field":  "material",
+                          "label":  "Material",
+                          "text":  "Marble",
+                          "spoken":  "Marble"
+                      },
+                      {
+                          "field":  "recommendation",
+                          "label":  "Recommendation",
+                          "text":  "Pergamon, Turkey",
+                          "spoken":  "Per gah mon, Turkey"
+                      }
+                  ]
+    },
+    {
+        "id":  39,
+        "parts":  [
+                      {
+                          "field":  "name",
+                          "label":  "Name",
+                          "text":  "House of the Vettii",
+                          "spoken":  "House of the Vet tee eye"
+                      },
+                      {
+                          "field":  "material",
+                          "label":  "Material",
+                          "text":  "Cut stone and fresco",
+                          "spoken":  "Cut stone and fresco"
+                      },
+                      {
+                          "field":  "recommendation",
+                          "label":  "Recommendation",
+                          "text":  "Pompeii, Italy",
+                          "spoken":  "Pompeii, Italy"
+                      }
+                  ]
+    },
+    {
+        "id":  40,
+        "parts":  [
+                      {
+                          "field":  "name",
+                          "label":  "Name",
+                          "text":  "Alexander Mosaic",
+                          "spoken":  "Alexander Mosaic"
+                      },
+                      {
+                          "field":  "material",
+                          "label":  "Material",
+                          "text":  "Mosaic",
+                          "spoken":  "Mosaic"
+                      },
+                      {
+                          "field":  "recommendation",
+                          "label":  "Recommendation",
+                          "text":  "100 BCE",
+                          "spoken":  "100 B. C. E."
+                      }
+                  ]
+    },
+    {
+        "id":  41,
+        "parts":  [
+                      {
+                          "field":  "name",
+                          "label":  "Name",
+                          "text":  "Seated Boxer",
+                          "spoken":  "Seated Boxer"
+                      },
+                      {
+                          "field":  "material",
+                          "label":  "Material",
+                          "text":  "Bronze",
+                          "spoken":  "Bronze"
+                      },
+                      {
+                          "field":  "recommendation",
+                          "label":  "Recommendation",
+                          "text":  "100 BCE",
+                          "spoken":  "100 B. C. E."
+                      }
+                  ]
+    },
+    {
+        "id":  42,
+        "parts":  [
+                      {
+                          "field":  "name",
+                          "label":  "Name",
+                          "text":  "Head of a Roman Patrician",
+                          "spoken":  "Head of a Roman Patrician"
+                      },
+                      {
+                          "field":  "material",
+                          "label":  "Material",
+                          "text":  "Marble",
+                          "spoken":  "Marble"
+                      },
+                      {
+                          "field":  "recommendation",
+                          "label":  "Recommendation",
+                          "text":  "50 BCE",
+                          "spoken":  "50 B. C. E."
+                      }
+                  ]
+    },
+    {
+        "id":  43,
+        "parts":  [
+                      {
+                          "field":  "name",
+                          "label":  "Name",
+                          "text":  "Augustus of Prima Porta",
+                          "spoken":  "Augustus of Prima Porta"
+                      },
+                      {
+                          "field":  "material",
+                          "label":  "Material",
+                          "text":  "Marble",
+                          "spoken":  "Marble"
+                      },
+                      {
+                          "field":  "recommendation",
+                          "label":  "Recommendation",
+                          "text":  "Rome, Italy",
+                          "spoken":  "Rome, Italy"
+                      }
+                  ]
+    },
+    {
+        "id":  44,
+        "parts":  [
+                      {
+                          "field":  "name",
+                          "label":  "Name",
+                          "text":  "Colosseum",
+                          "spoken":  "Colosseum"
+                      },
+                      {
+                          "field":  "material",
+                          "label":  "Material",
+                          "text":  "Stone and concrete",
+                          "spoken":  "Stone and concrete"
+                      },
+                      {
+                          "field":  "recommendation",
+                          "label":  "Recommendation",
+                          "text":  "Rome, Italy",
+                          "spoken":  "Rome, Italy"
+                      }
+                  ]
+    },
+    {
+        "id":  45,
+        "parts":  [
+                      {
+                          "field":  "name",
+                          "label":  "Name",
+                          "text":  "Forum of Trajan",
+                          "spoken":  "Forum of Tray jan"
+                      },
+                      {
+                          "field":  "material",
+                          "label":  "Material",
+                          "text":  "Brick and concrete; marble column",
+                          "spoken":  "Brick and concrete; marble column"
+                      },
+                      {
+                          "field":  "recommendation",
+                          "label":  "Recommendation",
+                          "text":  "Rome, Italy",
+                          "spoken":  "Rome, Italy"
+                      }
+                  ]
+    },
+    {
+        "id":  46,
+        "parts":  [
+                      {
+                          "field":  "name",
+                          "label":  "Name",
+                          "text":  "Pantheon",
+                          "spoken":  "Pantheon"
+                      },
+                      {
+                          "field":  "material",
+                          "label":  "Material",
+                          "text":  "Concrete with stone facing",
+                          "spoken":  "Concrete with stone facing"
+                      },
+                      {
+                          "field":  "recommendation",
+                          "label":  "Recommendation",
+                          "text":  "Rome, Italy",
+                          "spoken":  "Rome, Italy"
+                      }
+                  ]
+    },
+    {
+        "id":  47,
+        "parts":  [
+                      {
+                          "field":  "name",
+                          "label":  "Name",
+                          "text":  "Ludovisi Battle Sarcophagus",
+                          "spoken":  "Loo doh vee zee Battle Sarcophagus"
+                      },
+                      {
+                          "field":  "material",
+                          "label":  "Material",
+                          "text":  "Marble",
+                          "spoken":  "Marble"
+                      },
+                      {
+                          "field":  "recommendation",
+                          "label":  "Recommendation",
+                          "text":  "Rome, Italy",
+                          "spoken":  "Rome, Italy"
+                      }
+                  ]
+    }
 ]

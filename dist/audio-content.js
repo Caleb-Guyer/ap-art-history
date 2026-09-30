@@ -1,6 +1,7 @@
-import {RECOMMENDATIONS,shortDetail} from './data.js?v=10';
+import {RECOMMENDATIONS,shortDetail} from './data.js?v=12';
 
 const pronunciations=[
+ ['Anavysos','Ah nah vee sos'],['Kouros','Koo ross'],['Peplos Kore','Pep loss Kor ay'],['Vettii','Vet tee eye'],['Niobides','Nye oh bih deez'],['Doryphoros','Dor if or oss'],['Hegeso','Heg eh so'],['Pergamon','Per gah mon'],['Ludovisi','Loo doh vee zee'],['Trajan','Tray jan'],['terra cotta','terra cotta'],
  ['Akhenaten','Ah keh nah ten'],['Nefertiti','Nef er tee tee'],
  ['Tutankhamun','Toot ahn kah moon'],['Hatshepsut','Hat shep soot'],
  ['Menkaure','Men cow ray'],['Hunefer','Hoo neh fer'],['Amun-Re','Ah moon Ray'],
@@ -12,11 +13,11 @@ export function spokenText(text){
  if(spokenDates[text])return spokenDates[text];
  let spoken=text;
  for(const [word,pronunciation] of pronunciations)spoken=spoken.replace(new RegExp(`\\b${word}\\b`,'gi'),pronunciation);
- return spoken.replace(/&/g,'and');
+ return spoken.replace(/&/g,'and').replace(/\bBCE\b/g,'B. C. E.').replace(/\bCE\b/g,'C. E.');
 }
 export function audioParts(work){return [
  {field:'name',label:'Name',text:shortDetail(work.name)},
  {field:'material',label:'Material',text:shortDetail(work.material)},
  {field:'recommendation',label:'Recommendation',text:RECOMMENDATIONS[work.id].answer}
 ].map(part=>({...part,spoken:spokenText(part.text)}));}
-export const audioSource=id=>`audio/work-${id}.wav?v=10`;
+export const audioSource=id=>`audio/work-${id}.wav?v=12`;

@@ -1,5 +1,5 @@
 import {writeFile} from 'node:fs/promises';
-import {WORKS} from '../dist/data.js';
+import {ALL_WORKS as WORKS} from '../dist/data.js';
 import {audioParts} from '../dist/audio-content.js';
 
 if(!process.argv[2])throw new Error('Provide the temporary narration JSON path.');

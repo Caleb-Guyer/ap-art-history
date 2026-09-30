@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
-import {WORKS} from '../dist/data.js';
+import {WORKS,ALL_WORKS,collectionWorks} from '../dist/data.js';
 import {audioParts,audioSource} from '../dist/audio-content.js';
 import {AudioDeck,audioTime} from '../dist/audio-player.js';
 
@@ -16,8 +16,8 @@ function setup(){const media=new Media(),timers=new Map();let serial=0;const dec
 
 test('each audio recording matches the current name, materials, and recommendation',async()=>{
  const manifest=JSON.parse((await readFile(new URL('../dist/audio/narration.json',import.meta.url),'utf8')).replace(/^\uFEFF/,''));
- assert.deepEqual(manifest.map(item=>item.id),WORKS.map(work=>work.id));
- for(const work of WORKS){
+ assert.deepEqual(manifest.map(item=>item.id),ALL_WORKS.map(work=>work.id));
+ for(const work of ALL_WORKS){
   const parts=audioParts(work);assert.deepEqual(manifest.find(item=>item.id===work.id).parts,parts);assert.deepEqual(parts.map(part=>part.field),['name','material','recommendation']);
   const wav=await readFile(new URL(`../dist/audio/work-${work.id}.wav`,import.meta.url));assert.equal(wav.toString('ascii',0,4),'RIFF');assert.equal(wav.toString('ascii',8,12),'WAVE');
   let bytesPerSecond=0,data;
@@ -25,6 +25,13 @@ test('each audio recording matches the current name, materials, and recommendati
   assert.ok(data&&bytesPerSecond>0);const duration=data.length/bytesPerSecond;assert.ok(duration>8&&duration<40,`${work.id}: ${duration}`);
   let peak=0;for(let i=0;i<data.length;i+=2)peak=Math.max(peak,Math.abs(data.readInt16LE(i)));assert.ok(peak>500,`${work.id}: silent audio`);
  }
+});
+test('the new audio deck includes and cycles all 23 selected works',async()=>{
+ const media=new Media(),works=collectionWorks('25-47'),pending=[];
+ const deck=new AudioDeck({media,works,setTimer:callback=>{pending.push(callback);return pending.length;},clearTimer:()=>{}});
+ assert.equal(media.src,audioSource(25));await deck.play();
+ for(let i=0;i<23;i++){assert.equal(deck.state.work.id,25+i);media.end();pending.shift()();await Promise.resolve();}
+ assert.equal(deck.state.work.id,25);deck.destroy();
 });
 test('audio starts only on Play and advances after a completed clip and a gap',async()=>{
  const {deck,media,timers,tick}=setup();assert.equal(media.plays,0);assert.equal(media.src,audioSource(12));

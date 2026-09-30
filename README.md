@@ -1,18 +1,21 @@
-# AP Art History · Works 12–25
+# AP Art History · Works 12–47
 
-A minimal image-recall study app for Ancient Near Eastern and Egyptian art.
+A minimal image-recall study app for Ancient Near Eastern, Egyptian, Greek, Etruscan, Persian, and Roman art.
 
 ## Features
 
+- A compact set selector switches between **12–25** and **25–47**. Each set keeps its own study session and saved quiz; artwork scores and quiz history persist. Work 25 appears in both sets.
+- The new set has 23 works, 69 Best for quiz questions, and 115 All details multiple-choice questions. Named makers are accepted with locations; unknown makers have no artist question.
+
 - Nine study categories: best for quiz, all details, details, recommendation, names, materials, dates, locations, and culture/period.
-- Best for quiz asks **name → material → recommendation** for one artwork before moving to the next, in both typed and multiple-choice modes: 42 questions across all 14 works. Shuffling changes artwork order while keeping each work’s questions together. Missed-question retries preserve the same order among the remaining questions.
-- Recommendation practices one short extra detail per work in typed or multiple-choice mode. It is also available as the mock quiz’s third answer and in Quick review. The 14 works reuse nine answers: 3000 BCE, 2700 BCE, 2500 BCE, Giza/Egypt, 1750 BCE, Egyptian/New Kingdom, Amarna/Egypt, Egypt, and 720 BCE. Date checking still accepts any year in the work’s listed range.
-- Details combines dates, locations, and culture/period. Typed recall shows these together; multiple choice covers 42 questions across the 14 works.
-- Typed recall or four-option multiple choice for every category. All-details multiple choice covers all 70 eligible work/category combinations, with instant feedback and missed-question practice.
-- Fourteen works with thirty course images, including alternate views and associated objects.
+- Best for quiz asks **name → material → recommendation** for one artwork before moving to the next, in both typed and multiple-choice modes: 42 questions for 12–25 or 69 for 25–47. Shuffling changes artwork order while keeping each work’s questions together. Missed-question retries preserve the same order among the remaining questions.
+- Recommendation practices one short extra detail per work in typed or multiple-choice mode. It is also available as the mock quiz’s third answer and in Quick review. The earlier 14-work set reuses nine answers: 3000 BCE, 2700 BCE, 2500 BCE, Giza/Egypt, 1750 BCE, Egyptian/New Kingdom, Amarna/Egypt, Egypt, and 720 BCE. Date checking still accepts any year in the work’s listed range.
+- Details combines dates, locations, and culture/period. Typed recall shows these together; multiple choice covers 42 questions for 12–25 or 69 for 25–47.
+- Typed recall or four-option multiple choice for every category. All-details multiple choice covers 70 combinations for 12–25 or 115 for 25–47, with instant feedback and missed-question practice.
+- Thirty-six distinct works with 79 images across two overlapping sets, including alternate views and associated objects.
 - A typed or multiple-choice mock quiz: identify the image with its **name, complete material line, and a chosen date, location, or culture/period**. Change the third category for each work. Hatshepsut’s location question accepts either Deir el-Bahri, Egypt or Senenmut. Both appear as correct multiple-choice options; selecting either earns one point.
-- Audio mode cycles through all 14 works, reading each name, complete material answer, and recommendation. Includes play/pause, previous/next, seeking, playback speed, and repeat. Audio pauses when leaving the Audio tab and never changes study scores.
-- Full, seven-work, and five-work quizzes; optional timer and alternate views.
+- Audio mode cycles through the selected set, reading each name, complete material answer, and recommendation. Includes play/pause, previous/next, seeking, playback speed, and repeat. Audio pauses when leaving the Audio tab and never changes study scores.
+- Full-set, seven-work, and five-work quizzes; optional timer and alternate views.
 - Material checking that catches omitted inlays, supports, colors, and surface treatments.
 - Suggested marks for typed answers, automatic multiple-choice scoring, and adjustable grading before saving.
 - Concise study answers and choices omit parenthetical explanations; the shorter forms receive credit. Full source wording and aliases stay available in the data, and essential material components remain required.
@@ -43,7 +46,7 @@ The site is static. Deploy the contents of `dist/` as the public root. Navigatio
 
 ## Content and grading
 
-Primary source: the course PDF **Unit 2 ANCIENT NEAR EASTERN ART.pdf**, images 12–25. Each record in `dist/data.js` lists one-based PDF page numbers. Supplementary scholarly or museum sources appear only where needed and are linked in the work notes.
+Primary sources: **Unit 2 ANCIENT NEAR EASTERN ART.pdf**, **2 GREEK ART.pdf**, and **2.4 ROMAN ART.pdf**. Works 29–32 are absent from the supplied PDFs and use the College Board image set. Records in `dist/data.js` and `dist/classical-data.js` list one-based PDF page numbers. Supplementary scholarly or museum sources appear only where needed and are linked in the work notes.
 
 The app preserves course material terminology and explicitly lists conflicting slide dates. For example, the White Temple has two date ranges in the slides; the app accepts both. Hammurabi uses **basalt** to match this course. Makers are distinguished from patrons and depicted rulers. Senenmut is described as an attributed architect, not a securely documented signature.
 
@@ -51,7 +54,7 @@ The gold death mask on slide 80 is a separate object from Tutankhamun’s innerm
 
 Practice marking is deterministic and uses no AI service. Each quiz has three points per work. Blank fields receive zero. Recognized typed answers receive suggested credit; ambiguous wording remains pending for review. The third answer is checked against the selected category, rather than an arbitrary contextual fact. Final results can be saved only after every pending mark is resolved.
 
-Any individual year within a listed course range is accepted, including the endpoints and alternative slide ranges. An omitted era is interpreted as BCE; CE/AD is rejected. A smaller range is accepted when both endpoints fall within one listed range. Karnak has two separate milestones (temple 1550 BCE; hall 1250 BCE), so years between those milestones are not accepted. Multiple-choice date distractors do not overlap any accepted range. Equivalent material and artist options are deduplicated.
+Any individual year within a listed course range is accepted, including the endpoints and alternative slide ranges. An omitted era is inferred from the work’s accepted dates. Explicit BCE/CE and BC/AD are checked against the era. Agora spans 600 BCE–150 CE. The Vettii original-construction range and rebuilding range remain separate. Augustus accepts 1–50 CE for “early first century”; the c. 20 BCE bronze original is distinguished from the shown marble copy. A smaller range is accepted when both endpoints fall within one listed range. Karnak has two separate milestones (temple 1550 BCE; hall 1250 BCE), so years between those milestones are not accepted. Multiple-choice date distractors do not overlap any accepted range. Forum of Trajan accepts the slides’ column date of 112 CE and College Board’s 113 CE completion date. Equivalent material and artist options are deduplicated.
 
 Context questions and questions about unknown artists are excluded from study. Senenmut’s traditional attribution for Hatshepsut’s temple is combined with its location question, with no separate Artist category. Saved sessions skip retired questions and retain their responses; active quizzes move Hatshepsut’s Artist answer into Location and move unknown-artist prompts to Date while keeping the previous answer in the export. Completed quiz results remain intact.
 
@@ -67,7 +70,7 @@ The WAV clips in `dist/audio/` use the same concise names, materials, and recomm
 
 ## Image rights
 
-Artwork images were extracted from the supplied teaching PDF. `dist/images/sources.json` records the source slide of each image. Copyright in photographs and reproductions remains with the original rights holders; this repository does not assert a blanket license for those images. The source PDF itself is not redistributed here.
+Artwork images were extracted from the supplied teaching PDFs and the College Board image set. `dist/images/sources.json` records the source slide of each image. Copyright in photographs and reproductions remains with the original rights holders; this repository does not assert a blanket license for those images. The source PDFs themselves are not redistributed here.
 
 ## Structure
 
