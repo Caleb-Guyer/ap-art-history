@@ -1,4 +1,4 @@
-import {CLASSICAL_WORKS,CLASSICAL_RECOMMENDATIONS,CLASSICAL_VOCAB,CLASSICAL_CONFUSIONS} from './classical-data.js?v=12';
+import {CLASSICAL_WORKS,CLASSICAL_RECOMMENDATIONS,CLASSICAL_VOCAB,CLASSICAL_CONFUSIONS} from './classical-data.js?v=13';
 // Course wording comes first. Slide references are 1-based PDF pages.
 // Rulers, donors, and depicted figures are not automatically the artists.
 export const FIELDS = {
@@ -206,8 +206,8 @@ export const WORKS = [
 ];
 
 export const ALL_WORKS=[...WORKS,...CLASSICAL_WORKS];
-export const COLLECTIONS={'12-25':{label:'12–25',works:WORKS},'25-47':{label:'25–47',works:ALL_WORKS.filter(w=>w.id>=25)}};
-export function collectionWorks(key){return COLLECTIONS[key]?.works??COLLECTIONS['25-47'].works;}
+export const COLLECTIONS={'12-25':{label:'12–25',works:WORKS},'26-47':{label:'26–47',works:ALL_WORKS.filter(w=>w.id>=26)}};
+export function collectionWorks(key){return COLLECTIONS[key]?.works??COLLECTIONS['26-47'].works;}
 
 // Short study labels keep the complete source wording and accepted aliases intact.
 const shortLocations={

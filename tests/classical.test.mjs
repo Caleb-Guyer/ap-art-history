@@ -2,8 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {collectionWorks,RECOMMENDATIONS,shortDetail} from '../dist/data.js';
 import {getWork,answerFor,checkAnswer,makeChoices,choiceIsCorrect,studyFields,makeStudyQuestions,makeQuiz,finishQuiz,quizScore,sanitizeStore,defaultStore,switchCollection,recordRecall,signedDateIntervals} from '../dist/engine.js';
-const works=collectionWorks('25-47'),ids=works.map(w=>w.id);
-test('new set contains every work from 25 through 47',()=>{assert.deepEqual(ids,Array.from({length:23},(_,i)=>25+i));assert.equal(collectionWorks('12-25').length,14);});
+const works=collectionWorks('26-47'),ids=works.map(w=>w.id);
+test('new set contains every work from 26 through 47',()=>{assert.deepEqual(ids,Array.from({length:22},(_,i)=>26+i));assert.equal(collectionWorks('12-25').length,14);});
 test('every new identification and recommendation is accepted in concise form',()=>{
  for(const work of works)for(const field of [...studyFields('all',work),'recommendation'])assert.equal(checkAnswer(work,field,shortDetail(answerFor(work,field))).status,'correct',`${work.id} ${field}`);
 });
@@ -32,33 +32,57 @@ test('multi-part materials preserve necessary components and alternate temple ma
  for(const [id,answer] of [[27,'marble'],[28,'marble'],[31,'terra cotta'],[32,'fresco'],[33,'clay'],[34,'marble'],[36,'marble'],[39,'cut stone'],[41,'copper'],[44,'stone'],[45,'brick concrete'],[46,'concrete']])assert.notEqual(checkAnswer(getWork(id),'material',answer).status,'correct',`${id}: ${answer}`);
  for(const answer of ['wood, mud brick and terra cotta','wood, tufa and terra cotta','wood, mud brick or tufa; terra cotta sculpture'])assert.equal(checkAnswer(getWork(31),'material',answer).status,'correct',answer);
 });
-test('23-work quizzes score all three answers in both modes and survive reload',()=>{
+test('22-work quizzes score all three answers in both modes and survive reload',()=>{
  for(const mode of ['type','choice']){
-  const store=defaultStore();store.quiz=makeQuiz({ids,count:23,mode,factField:'recommendation',alternateViews:true});
+  const store=defaultStore();store.quiz=makeQuiz({ids,count:22,mode,factField:'recommendation',alternateViews:true});
   for(const q of store.quiz.questions){const w=getWork(q.id);Object.assign(store.quiz.answers[w.id],{name:w.name,material:w.material,fact:RECOMMENDATIONS[w.id].answer});assert.ok(w.images[q.image].quiz);}
-  const clean=sanitizeStore(JSON.parse(JSON.stringify(store)));assert.equal(clean.quiz.questions.length,23);assert.deepEqual(clean.quiz.answers,store.quiz.answers);
-  finishQuiz(clean.quiz);assert.deepEqual(quizScore(clean.quiz),{correct:69,pending:0,total:69});
+  const clean=sanitizeStore(JSON.parse(JSON.stringify(store)));assert.equal(clean.quiz.questions.length,22);assert.deepEqual(clean.quiz.answers,store.quiz.answers);
+  finishQuiz(clean.quiz);assert.deepEqual(quizScore(clean.quiz),{correct:66,pending:0,total:66});
  }
 });
 test('large mixed decks and best-for-quiz cycles retain all new questions',()=>{
- for(const [focus,mode,count] of [['all','choice',115],['details','choice',69],['best_quiz','type',69],['best_quiz','choice',69]]){
+ for(const [focus,mode,count] of [['all','choice',110],['details','choice',66],['best_quiz','type',66],['best_quiz','choice',66]]){
   const store=defaultStore(),questions=makeStudyQuestions({ids,focus,mode});store.focus=focus;store.mode=mode;
   store.study={focus,mode,questions,queue:questions.map(q=>q.id),index:count-1,typed:'unfinished answer',ratings:{0:true},responses:{}};
   const clean=sanitizeStore(JSON.parse(JSON.stringify(store)));assert.equal(clean.study.questions.length,count);assert.equal(clean.study.typed,'unfinished answer');assert.equal(clean.study.index,count-1);
  }
 });
 test('switching collections preserves separate sessions, quizzes, and shared artwork progress',()=>{
- const store=defaultStore();store.study={focus:'material',mode:'type',questions:[{id:47,field:'material'}],queue:[47],index:0,typed:'marble',ratings:{},responses:{}};store.quiz=makeQuiz({ids,count:23});store.quiz.answers[26].name='Agora';recordRecall(store,25,'material',true);
+ const store=defaultStore();store.study={focus:'material',mode:'type',questions:[{id:47,field:'material'}],queue:[47],index:0,typed:'marble',ratings:{},responses:{}};store.quiz=makeQuiz({ids,count:22});store.quiz.answers[26].name='Agora';recordRecall(store,25,'material',true);
  switchCollection(store,'12-25');assert.equal(store.study,null);assert.equal(store.quiz,null);
  store.study={focus:'material',mode:'type',questions:[{id:12,field:'material'}],queue:[12],index:0,typed:'mud brick',ratings:{},responses:{}};store.quiz=makeQuiz();
- const clean=sanitizeStore(JSON.parse(JSON.stringify(store)));switchCollection(clean,'25-47');assert.equal(clean.study.typed,'marble');assert.equal(clean.quiz.answers[26].name,'Agora');assert.equal(clean.quiz.questions.length,23);assert.equal(clean.stats[25].material.correct,1);
+ const clean=sanitizeStore(JSON.parse(JSON.stringify(store)));switchCollection(clean,'26-47');assert.equal(clean.study.typed,'marble');assert.equal(clean.quiz.answers[26].name,'Agora');assert.equal(clean.quiz.questions.length,22);assert.equal(clean.stats[25].material.correct,1);
  switchCollection(clean,'12-25');assert.equal(clean.study.typed,'mud brick');assert.equal(clean.quiz.questions.length,14);
  const legacy={version:1,stats:{12:{material:{seen:1,correct:1,streak:1,lastCorrect:true}}},history:[],focus:'material',mode:'type',study:clean.study,quiz:clean.quiz};assert.equal(sanitizeStore(legacy).collection,'12-25');
 });
 
-test('shared Lamassu draws its choices from the selected set',()=>{
- const qs=makeStudyQuestions({focus:'name',mode:'choice',ids,collection:'25-47'});
+test('classical works draw their choices from the selected set',()=>{
+ const qs=makeStudyQuestions({focus:'name',mode:'choice',ids,collection:'26-47'});
  assert.ok(qs[0].options.every(name=>works.some(w=>w.name===name)));
 });
 
 test('parenthetical material details are optional',()=>{assert.equal(checkAnswer(getWork(33),'material','clay, red figure').status,'correct');assert.equal(checkAnswer(getWork(41),'material','bronze').status,'correct');assert.equal(shortDetail(getWork(41).material),'Bronze');assert.equal(shortDetail(getWork(33).material),'Clay, red-figure technique');});
+
+test('old 25–47 sessions migrate without losing remaining answers or artwork scores',()=>{
+ const legacy={...defaultStore(),collection:'25-47'};
+ recordRecall(legacy,25,'material',true);
+ legacy.study={focus:'name',mode:'type',questions:[{id:25,field:'name'},{id:26,field:'name'},{id:27,field:'name'}],queue:[25,26,27],index:1,typed:'Agora',ratings:{0:true,1:false},responses:{0:'Lamassu',1:'Agora'}};
+ legacy.quiz=makeQuiz({ids:[25,26,27],count:3,collection:'25-47',random:()=>0.99});
+ legacy.quiz.index=1;legacy.quiz.answers[26].name='Agora';
+ const clean=sanitizeStore(JSON.parse(JSON.stringify(legacy)));
+ assert.equal(clean.collection,'26-47');assert.deepEqual(clean.study.queue,[26,27]);assert.equal(clean.study.index,0);assert.equal(clean.study.typed,'Agora');assert.deepEqual(clean.study.ratings,{0:false});assert.deepEqual(clean.study.responses,{0:'Agora'});assert.equal(clean.study.retiredQuestions[0].response,'Lamassu');
+ assert.deepEqual(clean.quiz.questions.map(q=>q.id),[26,27]);assert.equal(clean.quiz.index,0);assert.equal(clean.quiz.answers[26].name,'Agora');assert.equal(clean.quiz.collection,'26-47');assert.equal(clean.quiz.retiredQuestions[0].question.id,25);assert.equal(clean.stats[25].material.correct,1);
+ assert.deepEqual(sanitizeStore(JSON.parse(JSON.stringify(clean))),clean);
+ const other={...defaultStore(),collection:'12-25',units:{'25-47':legacy}};
+ const migrated=sanitizeStore(JSON.parse(JSON.stringify(other)));switchCollection(migrated,'26-47');assert.deepEqual(migrated.study.queue,[26,27]);assert.equal(migrated.quiz.answers[26].name,'Agora');
+});
+
+test('migration skips a current Lamassu prompt and preserves completed quiz results',()=>{
+ const legacy={...defaultStore(),collection:'25-47',study:{focus:'name',mode:'type',questions:[{id:25,field:'name'},{id:26,field:'name'}],queue:[25,26],index:0,typed:'Lamassu',ratings:{},responses:{}}};
+ legacy.quiz=makeQuiz({ids:[25,26],count:2,collection:'25-47',random:()=>0.99});legacy.quiz.part=2;
+ const clean=sanitizeStore(JSON.parse(JSON.stringify(legacy)));assert.equal(clean.study.typed,'');assert.equal(clean.study.retiredQuestions[0].typed,'Lamassu');assert.equal(clean.quiz.questions[0].id,26);assert.equal(clean.quiz.part,0);
+ finishQuiz(legacy.quiz);legacy.history=[{id:legacy.quiz.id,total:6}];
+ const reviewed=sanitizeStore(JSON.parse(JSON.stringify(legacy)));assert.equal(reviewed.quiz.questions.length,2);assert.deepEqual(reviewed.history,legacy.history);
+ const onlyLamassu={...defaultStore(),collection:'25-47',quiz:makeQuiz({ids:[25],count:1,collection:'25-47'})};
+ const archived=sanitizeStore(onlyLamassu);assert.equal(archived.quiz,null);assert.equal(archived.archivedQuiz.retiredQuestions[0].question.id,25);
+});

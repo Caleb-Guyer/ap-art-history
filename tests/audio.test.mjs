@@ -26,12 +26,12 @@ test('each audio recording matches the current name, materials, and recommendati
   let peak=0;for(let i=0;i<data.length;i+=2)peak=Math.max(peak,Math.abs(data.readInt16LE(i)));assert.ok(peak>500,`${work.id}: silent audio`);
  }
 });
-test('the new audio deck includes and cycles all 23 selected works',async()=>{
- const media=new Media(),works=collectionWorks('25-47'),pending=[];
+test('the new audio deck includes and cycles all 22 selected works',async()=>{
+ const media=new Media(),works=collectionWorks('26-47'),pending=[];
  const deck=new AudioDeck({media,works,setTimer:callback=>{pending.push(callback);return pending.length;},clearTimer:()=>{}});
- assert.equal(media.src,audioSource(25));await deck.play();
- for(let i=0;i<23;i++){assert.equal(deck.state.work.id,25+i);media.end();pending.shift()();await Promise.resolve();}
- assert.equal(deck.state.work.id,25);deck.destroy();
+ assert.equal(media.src,audioSource(26));await deck.play();
+ for(let i=0;i<22;i++){assert.equal(deck.state.work.id,26+i);media.end();pending.shift()();await Promise.resolve();}
+ assert.equal(deck.state.work.id,26);deck.destroy();
 });
 test('audio starts only on Play and advances after a completed clip and a gap',async()=>{
  const {deck,media,timers,tick}=setup();assert.equal(media.plays,0);assert.equal(media.src,audioSource(12));

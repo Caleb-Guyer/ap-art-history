@@ -4,15 +4,15 @@ A minimal image-recall study app for Ancient Near Eastern, Egyptian, Greek, Etru
 
 ## Features
 
-- A compact set selector switches between **12–25** and **25–47**. Each set keeps its own study session and saved quiz; artwork scores and quiz history persist. Work 25 appears in both sets.
-- The new set has 23 works, 69 Best for quiz questions, and 115 All details multiple-choice questions. Named makers are accepted with locations; unknown makers have no artist question.
+- A compact set selector switches between **12–25** and **26–47**. Each set keeps its own study session and saved quiz; artwork scores and quiz history persist. Work 25 belongs to the 12–25 set.
+- The new set has 22 works, 66 Best for quiz questions, and 110 All details multiple-choice questions. Named makers are accepted with locations; unknown makers have no artist question.
 
 - Nine study categories: best for quiz, all details, details, recommendation, names, materials, dates, locations, and culture/period.
-- Best for quiz asks **name → material → recommendation** for one artwork before moving to the next, in both typed and multiple-choice modes: 42 questions for 12–25 or 69 for 25–47. Shuffling changes artwork order while keeping each work’s questions together. Missed-question retries preserve the same order among the remaining questions.
+- Best for quiz asks **name → material → recommendation** for one artwork before moving to the next, in both typed and multiple-choice modes: 42 questions for 12–25 or 66 for 26–47. Shuffling changes artwork order while keeping each work’s questions together. Missed-question retries preserve the same order among the remaining questions.
 - Recommendation practices one short extra detail per work in typed or multiple-choice mode. It is also available as the mock quiz’s third answer and in Quick review. The earlier 14-work set reuses nine answers: 3000 BCE, 2700 BCE, 2500 BCE, Giza/Egypt, 1750 BCE, Egyptian/New Kingdom, Amarna/Egypt, Egypt, and 720 BCE. Date checking still accepts any year in the work’s listed range.
-- Details combines dates, locations, and culture/period. Typed recall shows these together; multiple choice covers 42 questions for 12–25 or 69 for 25–47.
-- Typed recall or four-option multiple choice for every category. All-details multiple choice covers 70 combinations for 12–25 or 115 for 25–47, with instant feedback and missed-question practice.
-- Thirty-six distinct works with 79 images across two overlapping sets, including alternate views and associated objects.
+- Details combines dates, locations, and culture/period. Typed recall shows these together; multiple choice covers 42 questions for 12–25 or 66 for 26–47.
+- Typed recall or four-option multiple choice for every category. All-details multiple choice covers 70 combinations for 12–25 or 110 for 26–47, with instant feedback and missed-question practice.
+- Thirty-six distinct works with 79 images across two sets, including alternate views and associated objects.
 - A typed or multiple-choice mock quiz: identify the image with its **name, complete material line, and a chosen date, location, or culture/period**. Change the third category for each work. Hatshepsut’s location question accepts either Deir el-Bahri, Egypt or Senenmut. Both appear as correct multiple-choice options; selecting either earns one point.
 - Audio mode cycles through the selected set, reading each name, complete material answer, and recommendation. Includes play/pause, previous/next, seeking, playback speed, and repeat. Audio pauses when leaving the Audio tab and never changes study scores.
 - Full-set, seven-work, and five-work quizzes; optional timer and alternate views.

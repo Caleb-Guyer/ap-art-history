@@ -1,6 +1,6 @@
-import {COLLECTIONS,collectionWorks,collectionVocab,collectionConfusions,FIELDS,shortDetail} from './data.js?v=12';
-import {STORAGE_KEY,normalize,shuffle,getWork,checkAnswer,defaultStore,sanitizeStore,recordRecall,needsPractice,makeQuiz,quizProgress,finishQuiz,quizScore,FACT_FIELDS,FIELD_LABELS,makeStudyQuestions,shuffleStudyQuestions,studyFields,fieldAvailable,quizFactFields,fieldLabel,referenceFor,choiceIsCorrect,switchCollection} from './engine.js?v=12';
-import {AudioDeck,AUDIO_RATES,audioTime} from './audio-player.js?v=12';
+import {COLLECTIONS,collectionWorks,collectionVocab,collectionConfusions,FIELDS,shortDetail} from './data.js?v=13';
+import {STORAGE_KEY,normalize,shuffle,getWork,checkAnswer,defaultStore,sanitizeStore,recordRecall,needsPractice,makeQuiz,quizProgress,finishQuiz,quizScore,FACT_FIELDS,FIELD_LABELS,makeStudyQuestions,shuffleStudyQuestions,studyFields,fieldAvailable,quizFactFields,fieldLabel,referenceFor,choiceIsCorrect,switchCollection} from './engine.js?v=13';
+import {AudioDeck,AUDIO_RATES,audioTime} from './audio-player.js?v=13';
 
 const root=document.querySelector('#app');
 let saved,storageAvailable=true;
@@ -113,7 +113,7 @@ function sourcesDialog(){modal(`<h2>Sources & settings</h2><p>Sources: <em>Unit 
  d.querySelector('[data-action="reset-progress"]').onclick=()=>{d.close();confirmDialog('Reset all progress?','Saved sessions, answers, and quiz results will be cleared on this device.','Reset',()=>{saved=defaultStore();syncCollection();quizScreen='setup';save();render();notify('Progress reset.');});};
  }});}
 function syncCollection(){audioDeck?.destroy();document.getElementById('artwork-audio')?.remove();audioDeck=null;WORKS=collectionWorks(saved.collection);quizOptions.count=WORKS.length;}
-function render(){const r=route();if(r.view==='detail'&&!WORKS.some(w=>w.id===r.id)){switchCollection(saved,r.id<25?'12-25':'25-47');syncCollection();save();}const content=r.view==='study'?studyView():r.view==='audio'?audioView():r.view==='quiz'?quizView():r.view==='works'?collectionView():r.view==='detail'?detailView(r.id):reviewView();root.innerHTML=skeleton(content,r.view);if(r.view==='audio')updateAudioControls();document.title=`${r.view==='detail'?getWork(r.id).shortName:{study:'Study',audio:'Audio',quiz:'Quiz',works:'Works',review:'Review'}[r.view]} · Art History`;}
+function render(){const r=route();if(r.view==='detail'&&!WORKS.some(w=>w.id===r.id)){switchCollection(saved,r.id<=25?'12-25':'26-47');syncCollection();save();}const content=r.view==='study'?studyView():r.view==='audio'?audioView():r.view==='quiz'?quizView():r.view==='works'?collectionView():r.view==='detail'?detailView(r.id):reviewView();root.innerHTML=skeleton(content,r.view);if(r.view==='audio')updateAudioControls();document.title=`${r.view==='detail'?getWork(r.id).shortName:{study:'Study',audio:'Audio',quiz:'Quiz',works:'Works',review:'Review'}[r.view]} · Art History`;}
 
 root.addEventListener('click',event=>{const el=event.target.closest('[data-action]');if(!el||el.disabled)return;switch(el.dataset.action){
  case 'audio-toggle':getAudioDeck().toggle();break;

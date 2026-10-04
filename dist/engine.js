@@ -1,4 +1,4 @@
-import {WORKS,ALL_WORKS,COLLECTIONS,collectionWorks,FIELDS,RECOMMENDATIONS,shortDetail} from './data.js?v=12';
+import {WORKS,ALL_WORKS,COLLECTIONS,collectionWorks,FIELDS,RECOMMENDATIONS,shortDetail} from './data.js?v=13';
 
 export const FACT_FIELDS=['date','location','culture'];
 export const STUDY_FIELDS=['name','material','date','location','culture'];
@@ -40,7 +40,7 @@ export function choiceAnswer(work,field){return field==='artist'?(work.id===21?'
 export function choiceAnswers(work,field){return [choiceAnswer(work,field),...(field==='location'&&hasKnownArtist(work)?[choiceAnswer(work,'artist')]:[])];}
 export function choiceIsCorrect(work,field,value){return choiceAnswers(work,field).some(answer=>normalize(shortDetail(answer))===normalize(shortDetail(value)));}
 export function makeChoices(work,field,random=Math.random,collection=null){
- const answers=choiceAnswers(work,field),correct=answers[0],poolWorks=collection?collectionWorks(collection):work.id>25?collectionWorks('25-47'):WORKS;
+ const answers=choiceAnswers(work,field),correct=answers[0],poolWorks=collection?collectionWorks(collection):work.id>25?collectionWorks('26-47'):WORKS;
  let pool;
  if(field==='recommendation'){
   const category=RECOMMENDATIONS[work.id].field;
@@ -141,12 +141,13 @@ export function checkAnswer(work,field,answer){
  return status('review','Compare your answer with the reference.');
 }
 
-export function defaultStore(){return {version:1,stats:{},history:[],collection:'25-47',units:{},focus:'material',mode:'type',study:null,quiz:null};}
+export function defaultStore(){return {version:1,stats:{},history:[],collection:'26-47',units:{},focus:'material',mode:'type',study:null,quiz:null};}
 export function sanitizeStore(raw){
  const clean=defaultStore();if(!raw||typeof raw!=='object'||raw.version!==1)return clean;
  const fields=[...Object.keys(FIELDS),'context','artist'];
- clean.collection=Object.hasOwn(COLLECTIONS,raw.collection)?raw.collection:'12-25';
- for(const key of Object.keys(COLLECTIONS)){if(raw.units?.[key]){const u=sanitizeStore({...raw.units[key],version:1,collection:key,stats:{},history:[],units:{}});clean.units[key]={focus:u.focus,mode:u.mode,study:u.study,quiz:u.quiz};}}
+ const legacyClassical=raw.collection==='25-47';
+ clean.collection=legacyClassical?'26-47':Object.hasOwn(COLLECTIONS,raw.collection)?raw.collection:'12-25';
+ for(const key of Object.keys(COLLECTIONS)){const sourceKey=key==='26-47'&&!raw.units?.[key]?'25-47':key;if(raw.units?.[sourceKey]){const u=sanitizeStore({...raw.units[sourceKey],version:1,collection:sourceKey,stats:{},history:[],units:{}});clean.units[key]={focus:u.focus,mode:u.mode,study:u.study,quiz:u.quiz};}}
  clean.focus=raw.focus==='context'?'details':raw.focus==='artist'?'location':fields.includes(raw.focus)?raw.focus:'material';
  if(raw.archivedStudy&&typeof raw.archivedStudy==='object')clean.archivedStudy=raw.archivedStudy;
  clean.mode=raw.mode==='choice'?'choice':'type';
@@ -164,9 +165,10 @@ export function sanitizeStore(raw){
   const session=clean.study;
   if(session.focus==='context'||session.focus==='artist'){clean.archivedStudy=session;clean.study=null;}
   else{
-   const kept=session.questions.map((question,index)=>({question,index})).filter(({question})=>fieldAvailable(getWork(question.id),question.field));
+   const keepQuestion=question=>fieldAvailable(getWork(question.id),question.field)&&(!legacyClassical||question.id!==25);
+   const kept=session.questions.map((question,index)=>({question,index})).filter(({question})=>keepQuestion(question));
    if(kept.length!==session.questions.length){
-    session.retiredQuestions=[...(Array.isArray(session.retiredQuestions)?session.retiredQuestions:[]),...session.questions.flatMap((question,index)=>fieldAvailable(getWork(question.id),question.field)?[]:[{question,rating:session.ratings[index],response:session.responses[index],typed:index===session.index?session.typed:''}])];
+    session.retiredQuestions=[...(Array.isArray(session.retiredQuestions)?session.retiredQuestions:[]),...session.questions.flatMap((question,index)=>keepQuestion(question)?[]:[{question,rating:session.ratings[index],response:session.responses[index],typed:index===session.index?session.typed:''}])];
     const currentKept=kept.some(({index})=>index===session.index);
     session.index=kept.filter(({index})=>index<session.index).length;
     session.questions=kept.map(x=>x.question);session.queue=session.questions.map(x=>x.id);
@@ -174,7 +176,7 @@ export function sanitizeStore(raw){
     session.responses=Object.fromEntries(kept.flatMap(({index},next)=>typeof session.responses[index]==='string'?[[next,session.responses[index]]]:[]));
     session.correct=Object.values(session.ratings).filter(Boolean).length;session.again=Object.entries(session.ratings).filter(([,value])=>!value).map(([index])=>session.queue[Number(index)]);
     if(!currentKept){session.typed='';session.revealed=Object.hasOwn(session.responses,session.index);session.image=0;}
-    if(!kept.length)clean.archivedStudy=session;
+    if(!kept.length){clean.archivedStudy=session;clean.study=null;}
    }
   }
  }
@@ -186,6 +188,19 @@ export function sanitizeStore(raw){
   clean.quiz={...q,answers,grades,status:q.status,mode:q.mode==='choice'?'choice':'type',part:[0,1,2].includes(q.part)?q.part:0,timerMinutes:[0,10,15,20].includes(q.timerMinutes)?q.timerMinutes:0,finishedAt:Number.isFinite(q.finishedAt)?q.finishedAt:null,recorded:!!q.recorded};
   if(clean.quiz.mode==='choice')for(const question of clean.quiz.questions){const w=getWork(question.id);question.choices??={};for(const f of ['name','material',...quizFactFields(w)]){if(!validChoices(w,f,question.choices[f]))question.choices[f]=makeChoices(w,f,Math.random,q.collection??clean.collection);if(q.status==='active')question.choices[f]=refreshLocationChoices(w,f,question.choices[f],answers[w.id].factField===f?answers[w.id].fact:null);}}
  }
+ if(clean.quiz){
+  const quiz=clean.quiz,legacyQuiz=quiz.collection==='25-47'||legacyClassical;
+  if(quiz.collection==='25-47')quiz.collection='26-47';
+  if(legacyQuiz&&quiz.status==='active'&&quiz.questions.some(question=>question.id===25)){
+   const previous=quiz.questions,kept=previous.filter(question=>question.id!==25),current=previous[quiz.index];
+   quiz.retiredQuestions=[...(Array.isArray(quiz.retiredQuestions)?quiz.retiredQuestions:[]),...previous.filter(question=>question.id===25).map(question=>({question,answer:quiz.answers[25]}))];
+   quiz.questions=kept;delete quiz.answers[25];
+   quiz.index=Math.min(previous.slice(0,quiz.index).filter(question=>question.id!==25).length,Math.max(0,kept.length-1));
+   if(current.id===25)quiz.part=0;
+   if(!kept.length){clean.archivedQuiz=quiz;clean.quiz=null;}
+  }
+ }
+ if(raw.archivedQuiz&&!clean.archivedQuiz)clean.archivedQuiz=raw.archivedQuiz;
  return clean;
 }
 export function recordRecall(store,id,field,correct){store.stats[id]??={};const stat=store.stats[id][field]??{seen:0,correct:0,streak:0};store.stats[id][field]={seen:stat.seen+1,correct:stat.correct+(correct?1:0),streak:correct?stat.streak+1:0,lastCorrect:correct};}

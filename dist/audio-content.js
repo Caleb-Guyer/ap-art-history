@@ -1,4 +1,4 @@
-import {RECOMMENDATIONS,shortDetail} from './data.js?v=12';
+import {RECOMMENDATIONS,shortDetail} from './data.js?v=13';
 
 const pronunciations=[
  ['Anavysos','Ah nah vee sos'],['Kouros','Koo ross'],['Peplos Kore','Pep loss Kor ay'],['Vettii','Vet tee eye'],['Niobides','Nye oh bih deez'],['Doryphoros','Dor if or oss'],['Hegeso','Heg eh so'],['Pergamon','Per gah mon'],['Ludovisi','Loo doh vee zee'],['Trajan','Tray jan'],['terra cotta','terra cotta'],
@@ -20,4 +20,4 @@ export function audioParts(work){return [
  {field:'material',label:'Material',text:shortDetail(work.material)},
  {field:'recommendation',label:'Recommendation',text:RECOMMENDATIONS[work.id].answer}
 ].map(part=>({...part,spoken:spokenText(part.text)}));}
-export const audioSource=id=>`audio/work-${id}.wav?v=12`;
+export const audioSource=id=>`audio/work-${id}.wav?v=13`;
