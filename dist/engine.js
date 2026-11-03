@@ -1,4 +1,4 @@
-import {WORKS,ALL_WORKS,COLLECTIONS,collectionWorks,FIELDS,RECOMMENDATIONS,shortDetail} from './data.js?v=13';
+import {WORKS,ALL_WORKS,COLLECTIONS,collectionWorks,collectionForWork,FIELDS,RECOMMENDATIONS,shortDetail} from './data.js?v=14';
 
 export const FACT_FIELDS=['date','location','culture'];
 export const STUDY_FIELDS=['name','material','date','location','culture'];
@@ -6,7 +6,7 @@ export const DETAIL_FIELDS=STUDY_FIELDS.filter(field=>field!=='name'&&field!=='m
 export const BEST_QUIZ_FIELDS=['name','material','recommendation'];
 export const FIELD_LABELS={details:'Details',recommendation:'Recommendation',name:'Name',material:'Material',date:'Date',location:'Location',artist:'Artist',culture:'Culture & period'};
 export function hasKnownArtist(work){return work?.artistKnown===true;}
-export function fieldAvailable(work,field){return field!=='context'&&field!=='artist';}
+export function fieldAvailable(work,field){return field!=='context'&&field!=='artist'&&!work?.omittedFields?.includes(field);}
 export function fieldLabel(work,field){return field==='location'&&hasKnownArtist(work)?'Location or artist':FIELD_LABELS[field];}
 export function referenceFor(work,field){return choiceAnswers(work,field).map(shortDetail).join(' or ');}
 export function studyFields(focus,work){const fields=focus==='best_quiz'?BEST_QUIZ_FIELDS:focus==='all'?STUDY_FIELDS:focus==='details'?DETAIL_FIELDS:Object.hasOwn(FIELDS,focus)?[focus]:[];return work?fields.filter(field=>fieldAvailable(work,field)):fields;}
@@ -19,7 +19,7 @@ export function shuffle(items,random=Math.random){const list=[...items];for(let 
 export function getWork(id){return ALL_WORKS.find(work=>work.id===Number(id));}
 export function answerFor(work,field){if(field==='recommendation')return RECOMMENDATIONS[work.id].answer;if(field==='culture')return work.culture===work.period?work.culture:`${work.culture} · ${work.period}`;if(field==='context')return work.goTo;return work[field]??'';}
 const status=(state,message,extra={})=>({status:state,message,...extra});
-const materialVocabulary=['mud brick','mudbrick','gypsum','shell','lapis lazuli','red limestone','black limestone','greywacke','graywacke','alabaster','basalt','diorite','granite','sandstone','limestone','wood','gold','silver','bronze','marble','papyrus','enamel','semiprecious stones','ivory','terracotta','clay','oil paint','tufa','concrete','brick','copper','fresco','travertine'];
+const materialVocabulary=['mud brick','mudbrick','gypsum','shell','lapis lazuli','red limestone','black limestone','greywacke','graywacke','alabaster','basalt','diorite','granite','sandstone','limestone','wood','gold','silver','bronze','marble','papyrus','enamel','semiprecious stones','ivory','terracotta','clay','oil paint','tufa','concrete','brick','copper','fresco','travertine','tempera','vellum','parchment','linen','encaustic','pigment','pigments','filigree','garnet','garnets','ceramic','ceramics','stained glass'];
 
 export function dateIntervals(work){return work.dateRanges??work.dateNumbers.flatMap(list=>work.id===20?list.map(n=>[n,n]):[[Math.min(...list),Math.max(...list)]]);}
 export function signedDateIntervals(work){return work.dateRanges??dateIntervals(work).map(([lo,hi])=>[-hi,-lo]);}
@@ -40,7 +40,7 @@ export function choiceAnswer(work,field){return field==='artist'?(work.id===21?'
 export function choiceAnswers(work,field){return [choiceAnswer(work,field),...(field==='location'&&hasKnownArtist(work)?[choiceAnswer(work,'artist')]:[])];}
 export function choiceIsCorrect(work,field,value){return choiceAnswers(work,field).some(answer=>normalize(shortDetail(answer))===normalize(shortDetail(value)));}
 export function makeChoices(work,field,random=Math.random,collection=null){
- const answers=choiceAnswers(work,field),correct=answers[0],poolWorks=collection?collectionWorks(collection):work.id>25?collectionWorks('26-47'):WORKS;
+ const answers=choiceAnswers(work,field),correct=answers[0],poolWorks=collectionWorks(collection??collectionForWork(work.id)).filter(other=>!other.omittedFields?.includes(field));
  let pool;
  if(field==='recommendation'){
   const category=RECOMMENDATIONS[work.id].field;
@@ -116,7 +116,7 @@ export function checkAnswer(work,field,answer){
   }
   const groups=work.locationAlternatives??[work.locationTerms];
   const missing=groups.map(group=>group.filter(terms=>!terms.some(t=>hasPhrase(input,t)))).sort((a,b)=>a.length-b.length)[0];
-  const incorrectCountries=['egypt','iraq','iran','greece','italy','turkey'].filter(c=>hasPhrase(input,c)&&!hasPhrase(work.location,c));
+  const incorrectCountries=['egypt','iraq','iran','greece','italy','turkey','france','spain'].filter(c=>hasPhrase(input,c)&&!hasPhrase(work.location,c));
   if(incorrectCountries.length)return status('review','Check the country against the course answer.');
   return missing.length?status('partial','Include the original site and its modern country.'):status('correct','Location recognized.');
  }

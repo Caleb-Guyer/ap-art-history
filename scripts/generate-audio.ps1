@@ -10,7 +10,7 @@ try {
     $audioSpeaker.Rate = -1
     $audioFormat = New-Object System.Speech.AudioFormat.SpeechAudioFormatInfo(22050, [System.Speech.AudioFormat.AudioBitsPerSample]::Sixteen, [System.Speech.AudioFormat.AudioChannel]::Mono)
     foreach ($record in $audioRecords) {
-        if ($record.id -lt 12 -or $record.id -gt 47) { throw 'Invalid artwork number.' }
+        if ($record.id -lt 12 -or $record.id -gt 64 -or $record.id -in @(56,57)) { throw 'Invalid artwork number.' }
         $audioFile = Join-Path $audioOutput ('work-' + $record.id + '.wav')
         $audioPrompt = New-Object System.Speech.Synthesis.PromptBuilder
         foreach ($part in $record.parts) {

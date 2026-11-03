@@ -1,4 +1,5 @@
-import {CLASSICAL_WORKS,CLASSICAL_RECOMMENDATIONS,CLASSICAL_VOCAB,CLASSICAL_CONFUSIONS} from './classical-data.js?v=13';
+import {CLASSICAL_WORKS,CLASSICAL_RECOMMENDATIONS,CLASSICAL_VOCAB,CLASSICAL_CONFUSIONS} from './classical-data.js?v=14';
+import {MEDIEVAL_WORKS,MEDIEVAL_RECOMMENDATIONS,MEDIEVAL_VOCAB,MEDIEVAL_CONFUSIONS} from './medieval-data.js?v=14';
 // Course wording comes first. Slide references are 1-based PDF pages.
 // Rulers, donors, and depicted figures are not automatically the artists.
 export const FIELDS = {
@@ -13,6 +14,7 @@ export const FIELDS = {
   culture: {label:'Culture & period', prompt:'Which culture and period?', help:'Identify the civilization. For Egyptian works, add the kingdom or period.'}
 };
 export const RECOMMENDATIONS = {
+ ...MEDIEVAL_RECOMMENDATIONS,
  ...CLASSICAL_RECOMMENDATIONS,
   12: {field:'date', answer:'3000 BCE'},
   13: {field:'date', answer:'3000 BCE'},
@@ -205,9 +207,10 @@ export const WORKS = [
  }
 ];
 
-export const ALL_WORKS=[...WORKS,...CLASSICAL_WORKS];
-export const COLLECTIONS={'12-25':{label:'12–25',works:WORKS},'26-47':{label:'26–47',works:ALL_WORKS.filter(w=>w.id>=26)}};
+export const ALL_WORKS=[...WORKS,...CLASSICAL_WORKS,...MEDIEVAL_WORKS];
+export const COLLECTIONS={'12-25':{label:'12–25',works:WORKS},'26-47':{label:'26–47',works:CLASSICAL_WORKS},'late-antique-gothic':{label:'Late Antique–Gothic',works:MEDIEVAL_WORKS}};
 export function collectionWorks(key){return COLLECTIONS[key]?.works??COLLECTIONS['26-47'].works;}
+export function collectionForWork(id){return Object.keys(COLLECTIONS).find(key=>COLLECTIONS[key].works.some(work=>work.id===Number(id)));}
 
 // Short study labels keep the complete source wording and accepted aliases intact.
 const shortLocations={
@@ -257,5 +260,5 @@ export const CONFUSIONS = [
  {title:'Temple or tomb?',items:['12 · The White Temple is a sanctuary on a ziggurat.','17 · The Giza pyramids are royal tombs.','21 · Hatshepsut’s mortuary temple serves a funerary cult; it is not her tomb.']}
 ];
 
-export function collectionVocab(key){return key==='12-25'?VOCAB:CLASSICAL_VOCAB;}
-export function collectionConfusions(key){return key==='12-25'?CONFUSIONS:CLASSICAL_CONFUSIONS;}
+export function collectionVocab(key){return key==='12-25'?VOCAB:key==='late-antique-gothic'?MEDIEVAL_VOCAB:CLASSICAL_VOCAB;}
+export function collectionConfusions(key){return key==='12-25'?CONFUSIONS:key==='late-antique-gothic'?MEDIEVAL_CONFUSIONS:CLASSICAL_CONFUSIONS;}

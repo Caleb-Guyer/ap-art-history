@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "AP Art History image recall and quiz practice for works 12–47",
+  "description": "AP Art History image recall and quiz practice across the AP image set",
   "scripts": {
     "start": "node scripts/serve.mjs",
     "test": "node --test tests/*.test.mjs",
