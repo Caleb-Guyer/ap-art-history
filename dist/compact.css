@@ -18,7 +18,7 @@
 .audio-settings .check-row{margin-left:auto}
 .audio-error{font-size:.875rem;color:#963d2f;margin-top:16px}
 @media(max-width:780px){.audio-surface .art-stage{height:285px;min-height:0}.audio-surface .audio-title{font-size:1.7rem!important}.audio-player{padding-top:20px}}
-@media(min-width:451px) and (max-width:650px){.topbar{flex-wrap:wrap!important;height:109px!important;align-content:center;row-gap:7px!important}.topbar .brand{width:100%;flex:none!important}.topbar nav{height:43px!important;justify-content:space-between;width:100%;gap:20px!important}}
+@media(min-width:451px) and (max-width:780px){.topbar{flex-wrap:wrap!important;height:109px!important;align-content:center;row-gap:7px!important}.topbar .brand{width:100%;flex:none!important}.topbar nav{height:43px!important;justify-content:space-between;width:100%;gap:20px!important}}
 .study-selects{display:flex;gap:10px;flex-wrap:wrap}
 .study-options{flex-wrap:wrap}
 .choice-list{display:grid;gap:10px}
@@ -144,4 +144,5 @@ details p,details ul{margin-top:12px}details p:last-child{margin-bottom:0}
 @media print{.topbar,.app-footer,.compact-heading,.results-actions{display:none!important}.workspace{padding:0}.shell{display:block}.review-content{border:0;overflow:visible}.review-content:has(.material-group),.review-content:has(.timeline-row){padding:0}.review-tabs{display:none}.print-heading{display:block;font-family:Georgia,serif;font-size:20pt}.vocab-grid{padding:0;background:white}.vocab-item{break-inside:avoid}.material-table th,.material-table td{padding:8px}.material-table td{font-size:9.5pt}}
 
 .collection-select{margin-left:auto;width:auto;min-width:92px;padding:7px 25px 7px 10px;font-size:.85rem;border-color:#d2d9df;background-color:transparent}
-@media(max-width:650px){.topbar{position:relative}.collection-select{position:absolute;right:0;top:12px;margin:0;width:95px}.topbar .brand{padding-right:110px}}
+@media(max-width:780px){.topbar{position:relative}.collection-select{position:absolute;right:16px;top:12px;margin:0;width:170px}.topbar .brand{padding-right:180px}}
+@media(max-width:380px){.topbar .brand{font-size:.9rem;gap:6px}}
