@@ -1,4 +1,4 @@
-import {WORKS,ALL_WORKS,COLLECTIONS,collectionWorks,collectionForWork,FIELDS,RECOMMENDATIONS,shortDetail} from './data.js?v=14';
+import {WORKS,ALL_WORKS,COLLECTIONS,collectionWorks,collectionForWork,FIELDS,RECOMMENDATIONS,shortDetail} from './data.js?v=15';
 
 export const FACT_FIELDS=['date','location','culture'];
 export const STUDY_FIELDS=['name','material','date','location','culture'];
@@ -7,7 +7,7 @@ export const BEST_QUIZ_FIELDS=['name','material','recommendation'];
 export const FIELD_LABELS={details:'Details',recommendation:'Recommendation',name:'Name',material:'Material',date:'Date',location:'Location',artist:'Artist',culture:'Culture & period'};
 export function hasKnownArtist(work){return work?.artistKnown===true;}
 export function fieldAvailable(work,field){return field!=='context'&&field!=='artist'&&!work?.omittedFields?.includes(field);}
-export function fieldLabel(work,field){return field==='location'&&hasKnownArtist(work)?'Location or artist':FIELD_LABELS[field];}
+export function fieldLabel(work,field){return field==='location'&&hasKnownArtist(work)?work.location?'Location or artist':'Artist':FIELD_LABELS[field];}
 export function referenceFor(work,field){return choiceAnswers(work,field).map(shortDetail).join(' or ');}
 export function studyFields(focus,work){const fields=focus==='best_quiz'?BEST_QUIZ_FIELDS:focus==='all'?STUDY_FIELDS:focus==='details'?DETAIL_FIELDS:Object.hasOwn(FIELDS,focus)?[focus]:[];return work?fields.filter(field=>fieldAvailable(work,field)):fields;}
 export function quizFactFields(work){const fields=[...FACT_FIELDS,'recommendation'];return work?fields.filter(field=>fieldAvailable(work,field)):fields;}
@@ -17,9 +17,9 @@ export const normalize=value=>String(value??'').normalize('NFKD').replace(/[\u03
 export function hasPhrase(text,phrase){return (` ${normalize(text)} `).includes(` ${normalize(phrase)} `);}
 export function shuffle(items,random=Math.random){const list=[...items];for(let i=list.length-1;i>0;i--){const j=Math.floor(random()*(i+1));[list[i],list[j]]=[list[j],list[i]];}return list;}
 export function getWork(id){return ALL_WORKS.find(work=>work.id===Number(id));}
-export function answerFor(work,field){if(field==='recommendation')return RECOMMENDATIONS[work.id].answer;if(field==='culture')return work.culture===work.period?work.culture:`${work.culture} · ${work.period}`;if(field==='context')return work.goTo;return work[field]??'';}
+export function answerFor(work,field){if(field==='recommendation')return RECOMMENDATIONS[work.id].answer;if(field==='culture')return work.culture===work.period?work.culture:`${work.culture} · ${work.period}`;if(field==='context')return work.goTo;if(field==='location'&&!work.location&&hasKnownArtist(work))return work.artist;return work[field]??'';}
 const status=(state,message,extra={})=>({status:state,message,...extra});
-const materialVocabulary=['mud brick','mudbrick','gypsum','shell','lapis lazuli','red limestone','black limestone','greywacke','graywacke','alabaster','basalt','diorite','granite','sandstone','limestone','wood','gold','silver','bronze','marble','papyrus','enamel','semiprecious stones','ivory','terracotta','clay','oil paint','tufa','concrete','brick','copper','fresco','travertine','tempera','vellum','parchment','linen','encaustic','pigment','pigments','filigree','garnet','garnets','ceramic','ceramics','stained glass'];
+const materialVocabulary=['mud brick','mudbrick','gypsum','shell','lapis lazuli','red limestone','black limestone','greywacke','graywacke','alabaster','basalt','diorite','granite','sandstone','limestone','wood','gold','silver','bronze','marble','papyrus','enamel','semiprecious stones','ivory','terracotta','clay','oil paint','tufa','concrete','brick','copper','fresco','travertine','tempera','vellum','parchment','linen','encaustic','pigment','pigments','filigree','garnet','garnets','ceramic','ceramics','stained glass','oil','canvas','masonry','engraving','woodcut','letterpress','stucco'];
 
 export function dateIntervals(work){return work.dateRanges??work.dateNumbers.flatMap(list=>work.id===20?list.map(n=>[n,n]):[[Math.min(...list),Math.max(...list)]]);}
 export function signedDateIntervals(work){return work.dateRanges??dateIntervals(work).map(([lo,hi])=>[-hi,-lo]);}
@@ -37,14 +37,14 @@ function checkNewDate(work,answer){
  return accepted?status('correct','Accepted date.'):status('incorrect','Outside the accepted date range or era.');
 }
 export function choiceAnswer(work,field){return field==='artist'?(work.id===21?'Senenmut (traditionally attributed)':hasKnownArtist(work)?work.artist:'Unknown / unrecorded'):answerFor(work,field);}
-export function choiceAnswers(work,field){return [choiceAnswer(work,field),...(field==='location'&&hasKnownArtist(work)?[choiceAnswer(work,'artist')]:[])];}
+export function choiceAnswers(work,field){return [choiceAnswer(work,field),...(field==='location'&&work.location&&hasKnownArtist(work)?[choiceAnswer(work,'artist')]:[])];}
 export function choiceIsCorrect(work,field,value){return choiceAnswers(work,field).some(answer=>normalize(shortDetail(answer))===normalize(shortDetail(value)));}
 export function makeChoices(work,field,random=Math.random,collection=null){
  const answers=choiceAnswers(work,field),correct=answers[0],poolWorks=collectionWorks(collection??collectionForWork(work.id)).filter(other=>!other.omittedFields?.includes(field));
  let pool;
  if(field==='recommendation'){
   const category=RECOMMENDATIONS[work.id].field;
-  pool=category==='date'?poolWorks.flatMap(other=>signedDateIntervals(other).flatMap(range=>range.map(year=>`${Math.abs(year)} ${year<0?'BCE':'CE'}`))):category==='location'?poolWorks.map(other=>shortDetail(other.location)):poolWorks.map(other=>choiceAnswer(other,'culture'));
+  pool=category==='date'?poolWorks.flatMap(other=>signedDateIntervals(other).flatMap(range=>range.map(year=>`${Math.abs(year)} ${year<0?'BCE':'CE'}`))):category==='location'?poolWorks.map(other=>shortDetail(choiceAnswer(other,'location'))):poolWorks.map(other=>choiceAnswer(other,'culture'));
   if(work.id>25&&category==='date')pool.push('1000 BCE','700 BCE','300 CE','500 CE');
  }
  else if(field==='artist')pool=['Unknown / unrecorded','Senenmut (traditionally attributed)','Imhotep','Thutmose'];
@@ -52,7 +52,7 @@ export function makeChoices(work,field,random=Math.random,collection=null){
  else pool=poolWorks.filter(other=>other.id!==work.id).map(other=>choiceAnswer(other,field));
  if(field==='date'&&work.id>25)pool.push('1000 BCE','700 BCE','300 CE','500 CE');
  // Keep the intended answers and exclude equivalent distractors.
- pool=[...new Map(pool.map(value=>[normalize(shortDetail(value)),value])).values()].filter(value=>normalize(shortDetail(value))!==normalize(shortDetail(correct))&&checkAnswer(work,field,value).status!=='correct'&&checkAnswer(work,field,shortDetail(value)).status!=='correct');
+ pool=[...new Map(pool.filter(value=>typeof value==='string'&&normalize(value)).map(value=>[normalize(shortDetail(value)),value])).values()].filter(value=>normalize(shortDetail(value))!==normalize(shortDetail(correct))&&checkAnswer(work,field,value).status!=='correct'&&checkAnswer(work,field,shortDetail(value)).status!=='correct');
  const options=shuffle([...answers,...shuffle(pool,random).slice(0,4-answers.length)],random);
  if(options.length!==4)throw new Error(`Not enough distinct choices: ${work.id} ${field}`);
  return {options,answer:correct,...(answers.length>1?{answers}:{})};
@@ -107,7 +107,8 @@ export function checkAnswer(work,field,answer){
   return status('correct',/\bBC(?:E)?\b/.test(era)?'Accepted date.':'Accepted date (BCE).');
  }
  if(field==='location'){
-  if(hasKnownArtist(work)&&[shortDetail(work.artist),...(work.artistAliases??(work.id===21?['senenmut','senmut','senemut']:[]))].map(normalize).includes(normalize(shortDetail(answer))))return status('correct','Artist recognized.');
+  if(hasKnownArtist(work)&&[work.artist,shortDetail(work.artist),...(work.artistAliases??(work.id===21?['senenmut','senmut','senemut']:[]))].map(normalize).includes(normalize(shortDetail(answer))))return status('correct','Artist recognized.');
+  if(!work.location)return status('review','Compare with the named maker in the official identification.');
   if(work.id===19){
    const bab=hasPhrase(input,'babylon'),susa=hasPhrase(input,'susa'),iraq=hasPhrase(input,'iraq'),iran=hasPhrase(input,'iran');
    if((bab&&iraq&&!susa&&!iran)||(susa&&iran&&!bab&&!iraq))return status('correct','Location recognized. Keep original site and findspot distinct.');

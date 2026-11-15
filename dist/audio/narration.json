@@ -1171,5 +1171,396 @@
         "spoken": "1320 C. E."
       }
     ]
+  },
+  {
+    "id": 66,
+    "parts": [
+      {
+        "field": "name",
+        "label": "Name",
+        "text": "Annunciation Triptych",
+        "spoken": "Annunciation Triptych"
+      },
+      {
+        "field": "material",
+        "label": "Material",
+        "text": "Oil on wood",
+        "spoken": "Oil on wood"
+      },
+      {
+        "field": "recommendation",
+        "label": "Recommendation",
+        "text": "1430 CE",
+        "spoken": "1430 C. E."
+      }
+    ]
+  },
+  {
+    "id": 67,
+    "parts": [
+      {
+        "field": "name",
+        "label": "Name",
+        "text": "Pazzi Chapel",
+        "spoken": "Pot see Chapel"
+      },
+      {
+        "field": "material",
+        "label": "Material",
+        "text": "Masonry",
+        "spoken": "Masonry"
+      },
+      {
+        "field": "recommendation",
+        "label": "Recommendation",
+        "text": "1430 CE",
+        "spoken": "1430 C. E."
+      }
+    ]
+  },
+  {
+    "id": 68,
+    "parts": [
+      {
+        "field": "name",
+        "label": "Name",
+        "text": "Arnolfini Portrait",
+        "spoken": "Ar nohl fee nee Portrait"
+      },
+      {
+        "field": "material",
+        "label": "Material",
+        "text": "Oil on wood",
+        "spoken": "Oil on wood"
+      },
+      {
+        "field": "recommendation",
+        "label": "Recommendation",
+        "text": "1434 CE",
+        "spoken": "1434 C. E."
+      }
+    ]
+  },
+  {
+    "id": 69,
+    "parts": [
+      {
+        "field": "name",
+        "label": "Name",
+        "text": "David",
+        "spoken": "David"
+      },
+      {
+        "field": "material",
+        "label": "Material",
+        "text": "Bronze",
+        "spoken": "Bronze"
+      },
+      {
+        "field": "recommendation",
+        "label": "Recommendation",
+        "text": "1450 CE",
+        "spoken": "1450 C. E."
+      }
+    ]
+  },
+  {
+    "id": 70,
+    "parts": [
+      {
+        "field": "name",
+        "label": "Name",
+        "text": "Palazzo Rucellai",
+        "spoken": "Palazzo Roo chel lie"
+      },
+      {
+        "field": "material",
+        "label": "Material",
+        "text": "Stone and masonry",
+        "spoken": "Stone and masonry"
+      },
+      {
+        "field": "recommendation",
+        "label": "Recommendation",
+        "text": "1450 CE",
+        "spoken": "1450 C. E."
+      }
+    ]
+  },
+  {
+    "id": 71,
+    "parts": [
+      {
+        "field": "name",
+        "label": "Name",
+        "text": "Madonna and Child with Two Angels",
+        "spoken": "Madonna and Child with Two Angels"
+      },
+      {
+        "field": "material",
+        "label": "Material",
+        "text": "Tempera on wood",
+        "spoken": "Tempera on wood"
+      },
+      {
+        "field": "recommendation",
+        "label": "Recommendation",
+        "text": "1465 CE",
+        "spoken": "1465 C. E."
+      }
+    ]
+  },
+  {
+    "id": 72,
+    "parts": [
+      {
+        "field": "name",
+        "label": "Name",
+        "text": "Birth of Venus",
+        "spoken": "Birth of Venus"
+      },
+      {
+        "field": "material",
+        "label": "Material",
+        "text": "Tempera on canvas",
+        "spoken": "Tempera on canvas"
+      },
+      {
+        "field": "recommendation",
+        "label": "Recommendation",
+        "text": "1485 CE",
+        "spoken": "1485 C. E."
+      }
+    ]
+  },
+  {
+    "id": 73,
+    "parts": [
+      {
+        "field": "name",
+        "label": "Name",
+        "text": "Last Supper",
+        "spoken": "Last Supper"
+      },
+      {
+        "field": "material",
+        "label": "Material",
+        "text": "Oil and tempera",
+        "spoken": "Oil and tempera"
+      },
+      {
+        "field": "recommendation",
+        "label": "Recommendation",
+        "text": "1495 CE",
+        "spoken": "1495 C. E."
+      }
+    ]
+  },
+  {
+    "id": 74,
+    "parts": [
+      {
+        "field": "name",
+        "label": "Name",
+        "text": "Adam and Eve",
+        "spoken": "Adam and Eve"
+      },
+      {
+        "field": "material",
+        "label": "Material",
+        "text": "Engraving",
+        "spoken": "Engraving"
+      },
+      {
+        "field": "recommendation",
+        "label": "Recommendation",
+        "text": "1504 CE",
+        "spoken": "1504 C. E."
+      }
+    ]
+  },
+  {
+    "id": 75,
+    "parts": [
+      {
+        "field": "name",
+        "label": "Name",
+        "text": "Sistine Chapel",
+        "spoken": "Sis teen Chapel"
+      },
+      {
+        "field": "material",
+        "label": "Material",
+        "text": "Fresco",
+        "spoken": "Fresco"
+      },
+      {
+        "field": "recommendation",
+        "label": "Recommendation",
+        "text": "1510 CE",
+        "spoken": "1510 C. E."
+      }
+    ]
+  },
+  {
+    "id": 76,
+    "parts": [
+      {
+        "field": "name",
+        "label": "Name",
+        "text": "School of Athens",
+        "spoken": "School of Athens"
+      },
+      {
+        "field": "material",
+        "label": "Material",
+        "text": "Fresco",
+        "spoken": "Fresco"
+      },
+      {
+        "field": "recommendation",
+        "label": "Recommendation",
+        "text": "1510 CE",
+        "spoken": "1510 C. E."
+      }
+    ]
+  },
+  {
+    "id": 77,
+    "parts": [
+      {
+        "field": "name",
+        "label": "Name",
+        "text": "Isenheim Altarpiece",
+        "spoken": "Ee zen hime Altarpiece"
+      },
+      {
+        "field": "material",
+        "label": "Material",
+        "text": "Oil on wood",
+        "spoken": "Oil on wood"
+      },
+      {
+        "field": "recommendation",
+        "label": "Recommendation",
+        "text": "1515 CE",
+        "spoken": "1515 C. E."
+      }
+    ]
+  },
+  {
+    "id": 78,
+    "parts": [
+      {
+        "field": "name",
+        "label": "Name",
+        "text": "Entombment of Christ",
+        "spoken": "Entombment of Christ"
+      },
+      {
+        "field": "material",
+        "label": "Material",
+        "text": "Oil on wood",
+        "spoken": "Oil on wood"
+      },
+      {
+        "field": "recommendation",
+        "label": "Recommendation",
+        "text": "1525 CE",
+        "spoken": "1525 C. E."
+      }
+    ]
+  },
+  {
+    "id": 79,
+    "parts": [
+      {
+        "field": "name",
+        "label": "Name",
+        "text": "Allegory of Law and Grace",
+        "spoken": "Allegory of Law and Grace"
+      },
+      {
+        "field": "material",
+        "label": "Material",
+        "text": "Woodcut and letterpress",
+        "spoken": "Woodcut and letterpress"
+      },
+      {
+        "field": "recommendation",
+        "label": "Recommendation",
+        "text": "1530 CE",
+        "spoken": "1530 C. E."
+      }
+    ]
+  },
+  {
+    "id": 80,
+    "parts": [
+      {
+        "field": "name",
+        "label": "Name",
+        "text": "Venus of Urbino",
+        "spoken": "Venus of Oor bee noh"
+      },
+      {
+        "field": "material",
+        "label": "Material",
+        "text": "Oil on canvas",
+        "spoken": "Oil on canvas"
+      },
+      {
+        "field": "recommendation",
+        "label": "Recommendation",
+        "text": "1538 CE",
+        "spoken": "1538 C. E."
+      }
+    ]
+  },
+  {
+    "id": 82,
+    "parts": [
+      {
+        "field": "name",
+        "label": "Name",
+        "text": "Il Gesù",
+        "spoken": "Il Gesù"
+      },
+      {
+        "field": "material",
+        "label": "Material",
+        "text": "Brick, marble, fresco, and stucco",
+        "spoken": "Brick, marble, fresco, and stucco"
+      },
+      {
+        "field": "recommendation",
+        "label": "Recommendation",
+        "text": "Rome, Italy",
+        "spoken": "Rome, Italy"
+      }
+    ]
+  },
+  {
+    "id": 83,
+    "parts": [
+      {
+        "field": "name",
+        "label": "Name",
+        "text": "Hunters in the Snow",
+        "spoken": "Hunters in the Snow"
+      },
+      {
+        "field": "material",
+        "label": "Material",
+        "text": "Oil on wood",
+        "spoken": "Oil on wood"
+      },
+      {
+        "field": "recommendation",
+        "label": "Recommendation",
+        "text": "1565 CE",
+        "spoken": "1565 C. E."
+      }
+    ]
   }
 ]

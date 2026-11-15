@@ -9,7 +9,7 @@ import {AudioDeck} from '../dist/audio-player.js';
 const ids=[48,49,50,51,52,54,53,55,58,59,60,61,62,63,64],works=collectionWorks('late-antique-gothic');
 
 test('Late Antique–Gothic contains exactly the requested works in the requested order',()=>{
- assert.deepEqual(works.map(w=>w.id),ids);assert.equal(ALL_WORKS.length,51);
+ assert.deepEqual(works.map(w=>w.id),ids);assert.equal(ALL_WORKS.length,68);
  assert.equal(collectionWorks('12-25').length,14);assert.equal(collectionWorks('26-47').length,22);
  for(const id of ids)assert.equal(collectionForWork(id),'late-antique-gothic');
  assert.equal(collectionForWork(25),'12-25');assert.equal(getWork(56),undefined);assert.equal(getWork(57),undefined);

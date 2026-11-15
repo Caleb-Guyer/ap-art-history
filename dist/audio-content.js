@@ -1,6 +1,7 @@
-import {RECOMMENDATIONS,shortDetail} from './data.js?v=14';
+import {RECOMMENDATIONS,shortDetail} from './data.js?v=15';
 
 const pronunciations=[
+ ['Pazzi','Pot see'],['Rucellai','Roo chel lie'],['Arnolfini','Ar nohl fee nee'],['Isenheim','Ee zen hime'],['Gesù','Jay zoo'],['Urbino','Oor bee noh'],['Sistine','Sis teen'],
  ['Röttgen Pietà','Rut gen Pee eh tah'],['Sainte-Foy','Saint Fwah'],['Giotto','Jot toe'],['Scrovegni','Skroh ven yee'],['Haggadah','Hah gah dah'],['Merovingian','Mer oh vin jee an'],['fibulae','fib you lee'],['Hagia Sophia','Hah gee ah Soh fee ah'],['Theotokos','Thee oh toh koss'],['Bibles moralisées','Bee bluh mor ah lee zay'],['Lindisfarne','Lin dis farn'],
  ['Anavysos','Ah nah vee sos'],['Kouros','Koo ross'],['Peplos Kore','Pep loss Kor ay'],['Vettii','Vet tee eye'],['Niobides','Nye oh bih deez'],['Doryphoros','Dor if or oss'],['Hegeso','Heg eh so'],['Pergamon','Per gah mon'],['Ludovisi','Loo doh vee zee'],['Trajan','Tray jan'],['terra cotta','terra cotta'],
  ['Akhenaten','Ah keh nah ten'],['Nefertiti','Nef er tee tee'],
@@ -21,4 +22,4 @@ export function audioParts(work){return [
  {field:'material',label:'Material',text:shortDetail(work.material)},
  {field:'recommendation',label:'Recommendation',text:RECOMMENDATIONS[work.id].answer}
 ].map(part=>({...part,spoken:spokenText(part.text)}));}
-export const audioSource=id=>`audio/work-${id}.wav?v=14`;
+export const audioSource=id=>`audio/work-${id}.wav?v=15`;

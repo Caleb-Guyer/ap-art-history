@@ -1,5 +1,6 @@
-import {CLASSICAL_WORKS,CLASSICAL_RECOMMENDATIONS,CLASSICAL_VOCAB,CLASSICAL_CONFUSIONS} from './classical-data.js?v=14';
-import {MEDIEVAL_WORKS,MEDIEVAL_RECOMMENDATIONS,MEDIEVAL_VOCAB,MEDIEVAL_CONFUSIONS} from './medieval-data.js?v=14';
+import {CLASSICAL_WORKS,CLASSICAL_RECOMMENDATIONS,CLASSICAL_VOCAB,CLASSICAL_CONFUSIONS} from './classical-data.js?v=15';
+import {MEDIEVAL_WORKS,MEDIEVAL_RECOMMENDATIONS,MEDIEVAL_VOCAB,MEDIEVAL_CONFUSIONS} from './medieval-data.js?v=15';
+import {RENAISSANCE_WORKS,RENAISSANCE_RECOMMENDATIONS,RENAISSANCE_VOCAB,RENAISSANCE_CONFUSIONS} from './renaissance-data.js?v=15';
 // Course wording comes first. Slide references are 1-based PDF pages.
 // Rulers, donors, and depicted figures are not automatically the artists.
 export const FIELDS = {
@@ -10,11 +11,12 @@ export const FIELDS = {
   name: {label:'Names', prompt:'Which artwork is this?', help:'Give the title of the assigned work. Include the person or place that identifies it.'},
   material: {label:'Materials', prompt:'What is it made of?', help:'Give the complete material line for the assigned work, including inlay and surface treatments.'},
   date: {label:'Dates', prompt:'When was it made?', help:'Any year within a listed range is accepted. Karnak has separate temple and hall dates.'},
-  location: {label:'Locations', prompt:'Where did it come from?', help:'Recall the original site and modern country, rather than just the museum.'},
+  location: {label:'Location/artist', prompt:'Where did it come from?', help:'Recall the original site and modern country, or a named maker from the identification line.'},
   culture: {label:'Culture & period', prompt:'Which culture and period?', help:'Identify the civilization. For Egyptian works, add the kingdom or period.'}
 };
 export const RECOMMENDATIONS = {
  ...MEDIEVAL_RECOMMENDATIONS,
+ ...RENAISSANCE_RECOMMENDATIONS,
  ...CLASSICAL_RECOMMENDATIONS,
   12: {field:'date', answer:'3000 BCE'},
   13: {field:'date', answer:'3000 BCE'},
@@ -207,8 +209,8 @@ export const WORKS = [
  }
 ];
 
-export const ALL_WORKS=[...WORKS,...CLASSICAL_WORKS,...MEDIEVAL_WORKS];
-export const COLLECTIONS={'12-25':{label:'12–25',works:WORKS},'26-47':{label:'26–47',works:CLASSICAL_WORKS},'late-antique-gothic':{label:'Late Antique–Gothic',works:MEDIEVAL_WORKS}};
+export const ALL_WORKS=[...WORKS,...CLASSICAL_WORKS,...MEDIEVAL_WORKS,...RENAISSANCE_WORKS];
+export const COLLECTIONS={'12-25':{label:'12–25',works:WORKS},'26-47':{label:'26–47',works:CLASSICAL_WORKS},'late-antique-gothic':{label:'Late Antique–Gothic',works:MEDIEVAL_WORKS},renaissance:{label:'Renaissance',works:RENAISSANCE_WORKS}};
 export function collectionWorks(key){return COLLECTIONS[key]?.works??COLLECTIONS['26-47'].works;}
 export function collectionForWork(id){return Object.keys(COLLECTIONS).find(key=>COLLECTIONS[key].works.some(work=>work.id===Number(id)));}
 
@@ -222,7 +224,7 @@ const shortLocations={
 const shortDetails=new Map(ALL_WORKS.flatMap(w=>[
  [w.name,w.shortName],
  [w.location,w.id===33?'Athens, Greece':shortLocations[w.id]??w.location],
- [w.artist,w.id===21?'Senenmut':w.artistKnown?w.artist:'Unknown'],
+ [w.artist,w.id===21?'Senenmut':w.artistKnown?(w.artistShort??w.artist):'Unknown'],
  [w.material,w.id===21?'Sandstone and red granite':w.material.replace(/\s*\([^)]*\)/g,'').trim()]
 ]));
 shortDetails.set('Unknown / unrecorded','Unknown');
@@ -260,5 +262,5 @@ export const CONFUSIONS = [
  {title:'Temple or tomb?',items:['12 · The White Temple is a sanctuary on a ziggurat.','17 · The Giza pyramids are royal tombs.','21 · Hatshepsut’s mortuary temple serves a funerary cult; it is not her tomb.']}
 ];
 
-export function collectionVocab(key){return key==='12-25'?VOCAB:key==='late-antique-gothic'?MEDIEVAL_VOCAB:CLASSICAL_VOCAB;}
-export function collectionConfusions(key){return key==='12-25'?CONFUSIONS:key==='late-antique-gothic'?MEDIEVAL_CONFUSIONS:CLASSICAL_CONFUSIONS;}
+export function collectionVocab(key){return key==='12-25'?VOCAB:key==='late-antique-gothic'?MEDIEVAL_VOCAB:key==='renaissance'?RENAISSANCE_VOCAB:CLASSICAL_VOCAB;}
+export function collectionConfusions(key){return key==='12-25'?CONFUSIONS:key==='late-antique-gothic'?MEDIEVAL_CONFUSIONS:key==='renaissance'?RENAISSANCE_CONFUSIONS:CLASSICAL_CONFUSIONS;}
