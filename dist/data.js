@@ -1,6 +1,6 @@
-import {CLASSICAL_WORKS,CLASSICAL_RECOMMENDATIONS,CLASSICAL_VOCAB,CLASSICAL_CONFUSIONS} from './classical-data.js?v=15';
-import {MEDIEVAL_WORKS,MEDIEVAL_RECOMMENDATIONS,MEDIEVAL_VOCAB,MEDIEVAL_CONFUSIONS} from './medieval-data.js?v=15';
-import {RENAISSANCE_WORKS,RENAISSANCE_RECOMMENDATIONS,RENAISSANCE_VOCAB,RENAISSANCE_CONFUSIONS} from './renaissance-data.js?v=15';
+import {CLASSICAL_WORKS,CLASSICAL_RECOMMENDATIONS,CLASSICAL_VOCAB,CLASSICAL_CONFUSIONS} from './classical-data.js?v=16';
+import {MEDIEVAL_WORKS,MEDIEVAL_RECOMMENDATIONS,MEDIEVAL_VOCAB,MEDIEVAL_CONFUSIONS} from './medieval-data.js?v=16';
+import {RENAISSANCE_WORKS,RENAISSANCE_RETIRED_WORKS,RENAISSANCE_RECOMMENDATIONS,RENAISSANCE_VOCAB,RENAISSANCE_CONFUSIONS} from './renaissance-data.js?v=16';
 // Course wording comes first. Slide references are 1-based PDF pages.
 // Rulers, donors, and depicted figures are not automatically the artists.
 export const FIELDS = {
@@ -210,6 +210,7 @@ export const WORKS = [
 ];
 
 export const ALL_WORKS=[...WORKS,...CLASSICAL_WORKS,...MEDIEVAL_WORKS,...RENAISSANCE_WORKS];
+export const RETIRED_WORKS=[...RENAISSANCE_RETIRED_WORKS];
 export const COLLECTIONS={'12-25':{label:'12–25',works:WORKS},'26-47':{label:'26–47',works:CLASSICAL_WORKS},'late-antique-gothic':{label:'Late Antique–Gothic',works:MEDIEVAL_WORKS},renaissance:{label:'Renaissance',works:RENAISSANCE_WORKS}};
 export function collectionWorks(key){return COLLECTIONS[key]?.works??COLLECTIONS['26-47'].works;}
 export function collectionForWork(id){return Object.keys(COLLECTIONS).find(key=>COLLECTIONS[key].works.some(work=>work.id===Number(id)));}
@@ -221,7 +222,7 @@ const shortLocations={
  21:'Deir el-Bahri, Egypt',22:'Amarna, Egypt',23:'Valley of the Kings, Egypt',
  25:'Dur-Sharrukin, Iraq'
 };
-const shortDetails=new Map(ALL_WORKS.flatMap(w=>[
+const shortDetails=new Map([...ALL_WORKS,...RETIRED_WORKS].flatMap(w=>[
  [w.name,w.shortName],
  [w.location,w.id===33?'Athens, Greece':shortLocations[w.id]??w.location],
  [w.artist,w.id===21?'Senenmut':w.artistKnown?(w.artistShort??w.artist):'Unknown'],

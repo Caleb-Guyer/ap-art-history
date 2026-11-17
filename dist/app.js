@@ -1,6 +1,6 @@
-import {COLLECTIONS,collectionWorks,collectionForWork,collectionVocab,collectionConfusions,FIELDS,shortDetail} from './data.js?v=15';
-import {STORAGE_KEY,normalize,shuffle,getWork,checkAnswer,defaultStore,sanitizeStore,recordRecall,needsPractice,makeQuiz,quizProgress,finishQuiz,quizScore,FACT_FIELDS,FIELD_LABELS,makeStudyQuestions,shuffleStudyQuestions,studyFields,fieldAvailable,quizFactFields,fieldLabel,referenceFor,choiceIsCorrect,switchCollection} from './engine.js?v=15';
-import {AudioDeck,AUDIO_RATES,audioTime} from './audio-player.js?v=15';
+import {COLLECTIONS,collectionWorks,collectionForWork,collectionVocab,collectionConfusions,FIELDS,shortDetail} from './data.js?v=16';
+import {STORAGE_KEY,normalize,shuffle,getWork,checkAnswer,defaultStore,sanitizeStore,recordRecall,needsPractice,makeQuiz,quizProgress,finishQuiz,quizScore,FACT_FIELDS,FIELD_LABELS,makeStudyQuestions,shuffleStudyQuestions,studyFields,fieldAvailable,quizFactFields,fieldLabel,referenceFor,choiceIsCorrect,switchCollection} from './engine.js?v=16';
+import {AudioDeck,AUDIO_RATES,audioTime} from './audio-player.js?v=16';
 
 const root=document.querySelector('#app');
 let saved,storageAvailable=true;

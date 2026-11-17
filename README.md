@@ -10,7 +10,7 @@ The new set contains exactly **48, 49, 50, 51, 52, 54, 53, 55, 58, 59, 60, 61, 6
 
 Material answers retain essential contents even when the curriculum puts them inside parentheses, such as purple vellum, silver, ink, and gold leaf. Century phrases remain the displayed dates. For numeric practice, early means the first half of a century, mid means its middle third, and unqualified centuries use their full span. These are explicit practice interpretations, not exact numeric ranges supplied by College Board. Separate construction phases stay separate.
 
-Renaissance contains **66–80 plus 82–83**: 17 works, 24 assigned images, 51 Best for quiz questions, and 68 all-details multiple-choice questions. It uses only College Board CED PDF pages 118–124 (printed 111–117). Artist names stay in the combined location/artist category; works without a stated location ask for the artist alone. Culture questions are omitted because those identification lines do not provide culture labels. The complete Il Gesù group retains all three named makers and its later fresco dates.
+Renaissance contains **66, 68, 74, 77, 79, 83, 67, 69, 70, 71, 72, 73, 75, 76, 80, 78**, in that order: 16 works, 21 assigned images, 48 Best for quiz questions, and 64 all-details multiple-choice questions. It uses only College Board CED PDF pages 118–124 (printed 111–117). Artist names stay in the combined location/artist category; works without a stated location ask for the artist alone. Culture questions are omitted because those identification lines do not provide culture labels. Work 82 is retired from the active set; its identification record and assets remain available for older saved results.
 
 ## Features
 
@@ -22,7 +22,7 @@ Renaissance contains **66–80 plus 82–83**: 17 works, 24 assigned images, 51 
 - Recommendation practices one short extra detail per work in typed or multiple-choice mode. It is also available as the mock quiz’s third answer and in Quick review. The earlier 14-work set reuses nine answers: 3000 BCE, 2700 BCE, 2500 BCE, Giza/Egypt, 1750 BCE, Egyptian/New Kingdom, Amarna/Egypt, Egypt, and 720 BCE. Date checking still accepts any year in the work’s listed range.
 - Details combines dates, locations, and culture/period. Typed recall shows these together; multiple choice covers 42 questions for 12–25 or 66 for 26–47.
 - Typed recall or four-option multiple choice for every category. All-details multiple choice covers 70 combinations for 12–25 or 110 for 26–47, with instant feedback and missed-question practice.
-- Sixty-eight distinct works with 145 images across four sets, including alternate views and associated objects.
+- Sixty-seven active works with 142 assigned images across four sets, including alternate views and associated objects.
 - A typed or multiple-choice mock quiz: identify the image with its **name, complete material line, and a chosen date, location, or culture/period**. Change the third category for each work. Hatshepsut’s location question accepts either Deir el-Bahri, Egypt or Senenmut. Both appear as correct multiple-choice options; selecting either earns one point.
 - Audio mode cycles through the selected set, reading each name, complete material answer, and recommendation. Includes play/pause, previous/next, seeking, playback speed, and repeat. Audio pauses when leaving the Audio tab and never changes study scores.
 - Full-set, seven-work, and five-work quizzes; optional timer and alternate views.

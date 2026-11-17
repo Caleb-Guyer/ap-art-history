@@ -1,6 +1,6 @@
 // Identification facts and images come only from the official College Board CED.
 export const RENAISSANCE_SOURCE='https://apcentral.collegeboard.org/media/pdf/ap-art-history-course-and-exam-description.pdf';
-export const RENAISSANCE_IDS=[66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,82,83];
+export const RENAISSANCE_IDS=[66,68,74,77,79,83,67,69,70,71,72,73,75,76,80,78];
 const make=(id,name,shortName,material,parts,date,ranges,artist,aliases,page,views,extra={})=>({
  id,name,shortName,material,materialParts:parts.map(p=>Array.isArray(p)?p:[p]),materialLabels:parts.map(p=>Array.isArray(p)?p[0]:p),
  date,dateRanges:ranges,dateNumbers:ranges.map(r=>r.map(Math.abs)),sortDate:-ranges[0][0],
@@ -10,7 +10,7 @@ const make=(id,name,shortName,material,parts,date,ranges,artist,aliases,page,vie
  links:[{title:'Official College Board curriculum',url:RENAISSANCE_SOURCE}],notes:[],
  images:views.map((label,i)=>({src:`images/work-${id}-${i+1}.jpg`,label,quiz:true})),...extra
 });
-export const RENAISSANCE_WORKS=[
+const RENAISSANCE_CATALOG=[
  make(66,'Annunciation Triptych (Merode Altarpiece)','Annunciation Triptych','Oil on wood',[
   ['oil','oil paint'],['wood','wooden panel','panel']
  ],'1427–1432 CE',[[1427,1432]],'Workshop of Robert Campin',['robert campin','campin','workshop of campin','robert campin workshop'],118,['Annunciation Triptych'],{
@@ -106,6 +106,9 @@ export const RENAISSANCE_WORKS=[
   nameAliases:['the hunters in the snow'],visual:'Hunters and dogs descend a snowy hill above a village and frozen ponds.',cue:'OIL on WOOD.'
  })
 ];
+export const RENAISSANCE_WORKS=RENAISSANCE_IDS.map(id=>RENAISSANCE_CATALOG.find(work=>work.id===id));
+// Retain retired identification records for saved quiz results and answer checking.
+export const RENAISSANCE_RETIRED_WORKS=RENAISSANCE_CATALOG.filter(work=>!RENAISSANCE_IDS.includes(work.id));
 export const RENAISSANCE_RECOMMENDATIONS={
  66:{field:'date',answer:'1430 CE'},67:{field:'date',answer:'1430 CE'},68:{field:'date',answer:'1434 CE'},
  69:{field:'date',answer:'1450 CE'},70:{field:'date',answer:'1450 CE'},71:{field:'date',answer:'1465 CE'},
@@ -116,14 +119,14 @@ export const RENAISSANCE_RECOMMENDATIONS={
 };
 export const RENAISSANCE_CONFUSIONS=[
  {title:'Wood or canvas?',items:['66 · Annunciation Triptych, 68 · Arnolfini, 77 · Isenheim, 78 · Entombment, and 83 · Hunters: OIL on WOOD.','71 · Madonna and Child: TEMPERA on WOOD.','72 · Birth of Venus: TEMPERA on CANVAS.','80 · Venus of Urbino: OIL on CANVAS.']},
- {title:'Wall paintings',items:['73 · Last Supper: OIL and TEMPERA.','75 · Sistine Chapel and 76 · School of Athens: FRESCO.','82 · Il Gesù group: BRICK, MARBLE, FRESCO, STUCCO.']},
+ {title:'Wall paintings',items:['73 · Last Supper: OIL and TEMPERA.','75 · Sistine Chapel and 76 · School of Athens: FRESCO.']},
  {title:'Sculpture, architecture, and prints',items:['69 · David: BRONZE.','67 · Pazzi Chapel: MASONRY.','70 · Palazzo Rucellai: STONE and MASONRY.','74 · Adam and Eve: ENGRAVING.','79 · Allegory of Law and Grace: WOODCUT and LETTERPRESS.']}
 ];
 // Review terms repeat the official identification lines without outside definitions.
 export const RENAISSANCE_VOCAB=[
  ['Oil on wood','College Board medium for works 66, 68, 77, 78, and 83.','Annunciation Triptych; Arnolfini; Isenheim; Entombment; Hunters'],
  ['Tempera','College Board lists tempera on wood for 71, tempera on canvas for 72, and oil and tempera for 73.','Madonna and Child; Birth of Venus; Last Supper'],
- ['Fresco','College Board medium for 75 and 76, and one material in the complete group for 82.','Sistine Chapel; School of Athens; Il Gesù'],
+ ['Fresco','College Board medium for works 75 and 76.','Sistine Chapel; School of Athens'],
  ['Engraving','College Board medium for work 74.','Adam and Eve'],
  ['Woodcut and letterpress','College Board medium for work 79.','Allegory of Law and Grace']
 ];

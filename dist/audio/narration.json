@@ -1196,29 +1196,6 @@
     ]
   },
   {
-    "id": 67,
-    "parts": [
-      {
-        "field": "name",
-        "label": "Name",
-        "text": "Pazzi Chapel",
-        "spoken": "Pot see Chapel"
-      },
-      {
-        "field": "material",
-        "label": "Material",
-        "text": "Masonry",
-        "spoken": "Masonry"
-      },
-      {
-        "field": "recommendation",
-        "label": "Recommendation",
-        "text": "1430 CE",
-        "spoken": "1430 C. E."
-      }
-    ]
-  },
-  {
     "id": 68,
     "parts": [
       {
@@ -1238,6 +1215,121 @@
         "label": "Recommendation",
         "text": "1434 CE",
         "spoken": "1434 C. E."
+      }
+    ]
+  },
+  {
+    "id": 74,
+    "parts": [
+      {
+        "field": "name",
+        "label": "Name",
+        "text": "Adam and Eve",
+        "spoken": "Adam and Eve"
+      },
+      {
+        "field": "material",
+        "label": "Material",
+        "text": "Engraving",
+        "spoken": "Engraving"
+      },
+      {
+        "field": "recommendation",
+        "label": "Recommendation",
+        "text": "1504 CE",
+        "spoken": "1504 C. E."
+      }
+    ]
+  },
+  {
+    "id": 77,
+    "parts": [
+      {
+        "field": "name",
+        "label": "Name",
+        "text": "Isenheim Altarpiece",
+        "spoken": "Ee zen hime Altarpiece"
+      },
+      {
+        "field": "material",
+        "label": "Material",
+        "text": "Oil on wood",
+        "spoken": "Oil on wood"
+      },
+      {
+        "field": "recommendation",
+        "label": "Recommendation",
+        "text": "1515 CE",
+        "spoken": "1515 C. E."
+      }
+    ]
+  },
+  {
+    "id": 79,
+    "parts": [
+      {
+        "field": "name",
+        "label": "Name",
+        "text": "Allegory of Law and Grace",
+        "spoken": "Allegory of Law and Grace"
+      },
+      {
+        "field": "material",
+        "label": "Material",
+        "text": "Woodcut and letterpress",
+        "spoken": "Woodcut and letterpress"
+      },
+      {
+        "field": "recommendation",
+        "label": "Recommendation",
+        "text": "1530 CE",
+        "spoken": "1530 C. E."
+      }
+    ]
+  },
+  {
+    "id": 83,
+    "parts": [
+      {
+        "field": "name",
+        "label": "Name",
+        "text": "Hunters in the Snow",
+        "spoken": "Hunters in the Snow"
+      },
+      {
+        "field": "material",
+        "label": "Material",
+        "text": "Oil on wood",
+        "spoken": "Oil on wood"
+      },
+      {
+        "field": "recommendation",
+        "label": "Recommendation",
+        "text": "1565 CE",
+        "spoken": "1565 C. E."
+      }
+    ]
+  },
+  {
+    "id": 67,
+    "parts": [
+      {
+        "field": "name",
+        "label": "Name",
+        "text": "Pazzi Chapel",
+        "spoken": "Pot see Chapel"
+      },
+      {
+        "field": "material",
+        "label": "Material",
+        "text": "Masonry",
+        "spoken": "Masonry"
+      },
+      {
+        "field": "recommendation",
+        "label": "Recommendation",
+        "text": "1430 CE",
+        "spoken": "1430 C. E."
       }
     ]
   },
@@ -1357,29 +1449,6 @@
     ]
   },
   {
-    "id": 74,
-    "parts": [
-      {
-        "field": "name",
-        "label": "Name",
-        "text": "Adam and Eve",
-        "spoken": "Adam and Eve"
-      },
-      {
-        "field": "material",
-        "label": "Material",
-        "text": "Engraving",
-        "spoken": "Engraving"
-      },
-      {
-        "field": "recommendation",
-        "label": "Recommendation",
-        "text": "1504 CE",
-        "spoken": "1504 C. E."
-      }
-    ]
-  },
-  {
     "id": 75,
     "parts": [
       {
@@ -1426,75 +1495,6 @@
     ]
   },
   {
-    "id": 77,
-    "parts": [
-      {
-        "field": "name",
-        "label": "Name",
-        "text": "Isenheim Altarpiece",
-        "spoken": "Ee zen hime Altarpiece"
-      },
-      {
-        "field": "material",
-        "label": "Material",
-        "text": "Oil on wood",
-        "spoken": "Oil on wood"
-      },
-      {
-        "field": "recommendation",
-        "label": "Recommendation",
-        "text": "1515 CE",
-        "spoken": "1515 C. E."
-      }
-    ]
-  },
-  {
-    "id": 78,
-    "parts": [
-      {
-        "field": "name",
-        "label": "Name",
-        "text": "Entombment of Christ",
-        "spoken": "Entombment of Christ"
-      },
-      {
-        "field": "material",
-        "label": "Material",
-        "text": "Oil on wood",
-        "spoken": "Oil on wood"
-      },
-      {
-        "field": "recommendation",
-        "label": "Recommendation",
-        "text": "1525 CE",
-        "spoken": "1525 C. E."
-      }
-    ]
-  },
-  {
-    "id": 79,
-    "parts": [
-      {
-        "field": "name",
-        "label": "Name",
-        "text": "Allegory of Law and Grace",
-        "spoken": "Allegory of Law and Grace"
-      },
-      {
-        "field": "material",
-        "label": "Material",
-        "text": "Woodcut and letterpress",
-        "spoken": "Woodcut and letterpress"
-      },
-      {
-        "field": "recommendation",
-        "label": "Recommendation",
-        "text": "1530 CE",
-        "spoken": "1530 C. E."
-      }
-    ]
-  },
-  {
     "id": 80,
     "parts": [
       {
@@ -1518,36 +1518,13 @@
     ]
   },
   {
-    "id": 82,
+    "id": 78,
     "parts": [
       {
         "field": "name",
         "label": "Name",
-        "text": "Il Gesù",
-        "spoken": "Il Gesù"
-      },
-      {
-        "field": "material",
-        "label": "Material",
-        "text": "Brick, marble, fresco, and stucco",
-        "spoken": "Brick, marble, fresco, and stucco"
-      },
-      {
-        "field": "recommendation",
-        "label": "Recommendation",
-        "text": "Rome, Italy",
-        "spoken": "Rome, Italy"
-      }
-    ]
-  },
-  {
-    "id": 83,
-    "parts": [
-      {
-        "field": "name",
-        "label": "Name",
-        "text": "Hunters in the Snow",
-        "spoken": "Hunters in the Snow"
+        "text": "Entombment of Christ",
+        "spoken": "Entombment of Christ"
       },
       {
         "field": "material",
@@ -1558,8 +1535,8 @@
       {
         "field": "recommendation",
         "label": "Recommendation",
-        "text": "1565 CE",
-        "spoken": "1565 C. E."
+        "text": "1525 CE",
+        "spoken": "1525 C. E."
       }
     ]
   }

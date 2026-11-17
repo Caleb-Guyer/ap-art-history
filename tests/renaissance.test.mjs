@@ -5,17 +5,17 @@ import {createHash} from 'node:crypto';
 import {ALL_WORKS,collectionWorks,collectionForWork,shortDetail,RECOMMENDATIONS} from '../dist/data.js';
 import {RENAISSANCE_SOURCE} from '../dist/renaissance-data.js';
 import {getWork,studyFields,fieldLabel,fieldAvailable,quizFactFields,answerFor,checkAnswer,makeChoices,makeStudyQuestions,makeQuiz,finishQuiz,quizScore,sanitizeStore,defaultStore,switchCollection,recordRecall} from '../dist/engine.js';
-const ids=[66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,82,83],works=collectionWorks('renaissance');
+const ids=[66,68,74,77,79,83,67,69,70,71,72,73,75,76,80,78],works=collectionWorks('renaissance');
 
-test('Renaissance contains the confirmed 17 works and preserves the earlier sets',()=>{
- assert.deepEqual(works.map(w=>w.id),ids);assert.equal(ALL_WORKS.length,68);assert.equal(getWork(81),undefined);
+test('Renaissance contains the requested 16 works in the supplied order and preserves the earlier sets',()=>{
+ assert.deepEqual(works.map(w=>w.id),ids);assert.equal(ALL_WORKS.length,67);assert.equal(getWork(81),undefined);
  assert.deepEqual(['12-25','26-47','late-antique-gothic'].map(key=>collectionWorks(key).length),[14,22,15]);
  for(const id of ids)assert.equal(collectionForWork(id),'renaissance');
 });
 
-test('Renaissance images are the 24 assigned College Board images with verified provenance',async()=>{
+test('Renaissance images are the 21 assigned College Board images with verified provenance',async()=>{
  const manifest=JSON.parse(await readFile(new URL('../dist/images/sources.json',import.meta.url),'utf8'));
- const images=manifest.images.filter(im=>ids.includes(im.work));assert.equal(images.length,24);
+ const images=manifest.images.filter(im=>ids.includes(im.work));assert.equal(images.length,21);
  for(const work of works){assert.equal(work.sourceUrl,RENAISSANCE_SOURCE);assert.ok(work.links.every(link=>link.url===RENAISSANCE_SOURCE));}
  for(const im of images){assert.equal(im.sourceUrl,RENAISSANCE_SOURCE);assert.ok(im.pdfPage>=118&&im.pdfPage<=124);assert.ok(getWork(im.work).sources.includes(im.pdfPage));const bytes=await readFile(new URL(`../dist/${im.file}`,import.meta.url));assert.equal(createHash('sha256').update(bytes).digest('hex'),im.sha256);}
  assert.deepEqual(getWork(75).images.map(im=>im.label),['Chapel interior','The Delphic Sibyl','The Flood','Chapel exterior']);
@@ -51,15 +51,15 @@ test('Renaissance dates accept individual in-range years and preserve separate c
 });
 
 test('Renaissance study modes and full quizzes survive saving and switching sets',()=>{
- assert.equal(makeStudyQuestions({ids,focus:'all',mode:'choice'}).length,68);assert.equal(makeStudyQuestions({ids,focus:'details',mode:'choice'}).length,34);assert.equal(makeStudyQuestions({ids,focus:'culture',mode:'choice'}).length,0);
+ assert.equal(makeStudyQuestions({ids,focus:'all',mode:'choice'}).length,64);assert.equal(makeStudyQuestions({ids,focus:'details',mode:'choice'}).length,32);assert.equal(makeStudyQuestions({ids,focus:'culture',mode:'choice'}).length,0);
  for(const mode of ['type','choice']){
-  const questions=makeStudyQuestions({ids,focus:'best_quiz',mode,collection:'renaissance'});assert.equal(questions.length,51);assert.deepEqual(questions.map(q=>q.id),ids.flatMap(id=>[id,id,id]));
+  const questions=makeStudyQuestions({ids,focus:'best_quiz',mode,collection:'renaissance'});assert.equal(questions.length,48);assert.deepEqual(questions.map(q=>q.id),ids.flatMap(id=>[id,id,id]));
   for(let i=0;i<questions.length;i+=3)assert.deepEqual(questions.slice(i,i+3).map(q=>q.field),['name','material','recommendation']);
-  const store={...defaultStore(),collection:'renaissance',study:{focus:'best_quiz',mode,questions,queue:questions.map(q=>q.id),index:50,typed:'1565',ratings:{0:true},responses:{0:'Annunciation Triptych'}}};
-  recordRecall(store,12,'material',true);store.quiz=makeQuiz({ids,count:17,mode,alternateViews:true,factField:'recommendation',collection:'renaissance'});
+  const store={...defaultStore(),collection:'renaissance',study:{focus:'best_quiz',mode,questions,queue:questions.map(q=>q.id),index:47,typed:'1565',ratings:{0:true},responses:{0:'Annunciation Triptych'}}};
+  recordRecall(store,12,'material',true);store.quiz=makeQuiz({ids,count:16,mode,alternateViews:true,factField:'recommendation',collection:'renaissance'});
   for(const q of store.quiz.questions){const work=getWork(q.id);assert.ok(work.images[q.image].quiz);Object.assign(store.quiz.answers[q.id],{name:work.name,material:work.material,fact:RECOMMENDATIONS[q.id].answer});}
-  const clean=sanitizeStore(JSON.parse(JSON.stringify(store)));assert.equal(clean.study.index,50);assert.equal(clean.study.typed,'1565');assert.deepEqual(clean.quiz.answers,store.quiz.answers);
-  finishQuiz(clean.quiz);assert.deepEqual(quizScore(clean.quiz),{correct:51,pending:0,total:51});
-  switchCollection(clean,'late-antique-gothic');switchCollection(clean,'renaissance');assert.equal(clean.study.questions.length,51);assert.equal(clean.quiz.questions.length,17);assert.equal(clean.stats[12].material.correct,1);
+  const clean=sanitizeStore(JSON.parse(JSON.stringify(store)));assert.equal(clean.study.index,47);assert.equal(clean.study.typed,'1565');assert.deepEqual(clean.quiz.answers,store.quiz.answers);
+  finishQuiz(clean.quiz);assert.deepEqual(quizScore(clean.quiz),{correct:48,pending:0,total:48});
+  switchCollection(clean,'late-antique-gothic');switchCollection(clean,'renaissance');assert.equal(clean.study.questions.length,48);assert.equal(clean.quiz.questions.length,16);assert.equal(clean.stats[12].material.correct,1);
  }
 });

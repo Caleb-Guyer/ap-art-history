@@ -1330,6 +1330,20 @@
       "sha256": "2f5e967948d9cde18a8ef60bf50e0283adace7f51067d139ebd70013fe5caffe"
     },
     {
+      "file": "images/work-83-1.jpg",
+      "work": 83,
+      "sourceDocument": "College Board AP Art History Course and Exam Description",
+      "sourceUrl": "https://apcentral.collegeboard.org/media/pdf/ap-art-history-course-and-exam-description.pdf",
+      "pdfPage": 124,
+      "printedPage": 117,
+      "embeddedImageIndex": 3,
+      "width": 992,
+      "height": 718,
+      "sha256": "90a782c2f95445834ce3fb5543bd131e5988f58debd85840b09334fd4acd52d7"
+    }
+  ],
+  "retiredImages": [
+    {
       "file": "images/work-82-1.jpg",
       "work": 82,
       "sourceDocument": "College Board AP Art History Course and Exam Description",
@@ -1364,18 +1378,6 @@
       "width": 714,
       "height": 1022,
       "sha256": "7bdb62c8c90276aee33858dc769d0b0451d7b60e581603c3156860d74038dd38"
-    },
-    {
-      "file": "images/work-83-1.jpg",
-      "work": 83,
-      "sourceDocument": "College Board AP Art History Course and Exam Description",
-      "sourceUrl": "https://apcentral.collegeboard.org/media/pdf/ap-art-history-course-and-exam-description.pdf",
-      "pdfPage": 124,
-      "printedPage": 117,
-      "embeddedImageIndex": 3,
-      "width": 992,
-      "height": 718,
-      "sha256": "90a782c2f95445834ce3fb5543bd131e5988f58debd85840b09334fd4acd52d7"
     }
   ]
 }

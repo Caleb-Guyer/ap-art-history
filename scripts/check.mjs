@@ -2,7 +2,7 @@ import {ALL_WORKS as WORKS,FIELDS} from '../dist/data.js';
 import {audioParts} from '../dist/audio-content.js';
 import {readFile,access} from 'node:fs/promises';
 import assert from 'node:assert/strict';
-assert.deepEqual(WORKS.map(w=>w.id),[...Array.from({length:36},(_,i)=>i+12),48,49,50,51,52,54,53,55,58,59,60,61,62,63,64,...Array.from({length:15},(_,i)=>66+i),82,83]);
+assert.deepEqual(WORKS.map(w=>w.id),[...Array.from({length:36},(_,i)=>i+12),48,49,50,51,52,54,53,55,58,59,60,61,62,63,64,66,68,74,77,79,83,67,69,70,71,72,73,75,76,80,78]);
 for(const w of WORKS){for(const field of ['name','material','date','artist','goTo',...['location','culture'].filter(f=>!w.omittedFields?.includes(f)&&!(f==='location'&&!w.location&&w.artistKnown))])assert.ok(w[field],`${w.id}: ${field}`);assert.equal(w.materialParts.length,w.materialLabels.length);assert.ok(w.sources.length);assert.ok(w.images[0].quiz);for(const image of w.images)await access(new URL(`../dist/${image.src}`,import.meta.url));}
 for(const name of ['app.js','engine.js','data.js','classical-data.js','medieval-data.js','renaissance-data.js','audio-content.js','audio-player.js','styles.css','compact.css'])await access(new URL(`../dist/${name}`,import.meta.url));
 const narration=JSON.parse((await readFile(new URL('../dist/audio/narration.json',import.meta.url),'utf8')).replace(/^\uFEFF/,''));

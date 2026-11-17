@@ -1,4 +1,4 @@
-import {RECOMMENDATIONS,shortDetail} from './data.js?v=15';
+import {RECOMMENDATIONS,shortDetail} from './data.js?v=16';
 
 const pronunciations=[
  ['Pazzi','Pot see'],['Rucellai','Roo chel lie'],['Arnolfini','Ar nohl fee nee'],['Isenheim','Ee zen hime'],['Gesù','Jay zoo'],['Urbino','Oor bee noh'],['Sistine','Sis teen'],
@@ -22,4 +22,4 @@ export function audioParts(work){return [
  {field:'material',label:'Material',text:shortDetail(work.material)},
  {field:'recommendation',label:'Recommendation',text:RECOMMENDATIONS[work.id].answer}
 ].map(part=>({...part,spoken:spokenText(part.text)}));}
-export const audioSource=id=>`audio/work-${id}.wav?v=15`;
+export const audioSource=id=>`audio/work-${id}.wav?v=16`;

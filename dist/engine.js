@@ -1,4 +1,8 @@
-import {WORKS,ALL_WORKS,COLLECTIONS,collectionWorks,collectionForWork,FIELDS,RECOMMENDATIONS,shortDetail} from './data.js?v=15';
+import {WORKS,ALL_WORKS,RETIRED_WORKS,COLLECTIONS,collectionWorks,collectionForWork,FIELDS,RECOMMENDATIONS,shortDetail} from './data.js?v=16';
+
+const catalog=[...ALL_WORKS,...RETIRED_WORKS];
+const activeIds=new Set(ALL_WORKS.map(work=>work.id));
+const retiredIds=new Set(RETIRED_WORKS.map(work=>work.id));
 
 export const FACT_FIELDS=['date','location','culture'];
 export const STUDY_FIELDS=['name','material','date','location','culture'];
@@ -16,7 +20,7 @@ export const STORAGE_KEY='ap-art-history-12-25-v1';
 export const normalize=value=>String(value??'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[’']/g,'').replace(/tutankham[eo]n/g,'tutankhamun').replace(/[^a-z0-9]+/g,' ').trim().replace(/\s+/g,' ');
 export function hasPhrase(text,phrase){return (` ${normalize(text)} `).includes(` ${normalize(phrase)} `);}
 export function shuffle(items,random=Math.random){const list=[...items];for(let i=list.length-1;i>0;i--){const j=Math.floor(random()*(i+1));[list[i],list[j]]=[list[j],list[i]];}return list;}
-export function getWork(id){return ALL_WORKS.find(work=>work.id===Number(id));}
+export function getWork(id){return catalog.find(work=>work.id===Number(id));}
 export function answerFor(work,field){if(field==='recommendation')return RECOMMENDATIONS[work.id].answer;if(field==='culture')return work.culture===work.period?work.culture:`${work.culture} · ${work.period}`;if(field==='context')return work.goTo;if(field==='location'&&!work.location&&hasKnownArtist(work))return work.artist;return work[field]??'';}
 const status=(state,message,extra={})=>({status:state,message,...extra});
 const materialVocabulary=['mud brick','mudbrick','gypsum','shell','lapis lazuli','red limestone','black limestone','greywacke','graywacke','alabaster','basalt','diorite','granite','sandstone','limestone','wood','gold','silver','bronze','marble','papyrus','enamel','semiprecious stones','ivory','terracotta','clay','oil paint','tufa','concrete','brick','copper','fresco','travertine','tempera','vellum','parchment','linen','encaustic','pigment','pigments','filigree','garnet','garnets','ceramic','ceramics','stained glass','oil','canvas','masonry','engraving','woodcut','letterpress','stucco'];
@@ -67,7 +71,7 @@ function refreshLocationChoices(work,field,question,selected){
  return {...question,options,answers};
 }
 export function makeStudyQuestions({focus='material',ids=WORKS.map(w=>w.id),mode='type',randomize=false,random=Math.random,collection=null}={}){
- const questions=ids.flatMap(id=>{const work=getWork(id),fields=mode==='choice'||focus==='best_quiz'?studyFields(focus,work):Object.hasOwn(FIELDS,focus)&&fieldAvailable(work,focus)?[focus]:[];return fields.map(field=>({id,field,...(mode==='choice'?makeChoices(work,field,random,collection):{})}));});
+ const questions=ids.filter(id=>activeIds.has(Number(id))).flatMap(id=>{const work=getWork(id),fields=mode==='choice'||focus==='best_quiz'?studyFields(focus,work):Object.hasOwn(FIELDS,focus)&&fieldAvailable(work,focus)?[focus]:[];return fields.map(field=>({id,field,...(mode==='choice'?makeChoices(work,field,random,collection):{})}));});
  return randomize?shuffleStudyQuestions(questions,focus,random):questions;
 }
 export function shuffleStudyQuestions(questions,focus,random=Math.random){
@@ -148,14 +152,14 @@ export function sanitizeStore(raw){
  const fields=[...Object.keys(FIELDS),'context','artist'];
  const legacyClassical=raw.collection==='25-47';
  clean.collection=legacyClassical?'26-47':Object.hasOwn(COLLECTIONS,raw.collection)?raw.collection:'12-25';
- for(const key of Object.keys(COLLECTIONS)){const sourceKey=key==='26-47'&&!raw.units?.[key]?'25-47':key;if(raw.units?.[sourceKey]){const u=sanitizeStore({...raw.units[sourceKey],version:1,collection:sourceKey,stats:{},history:[],units:{}});clean.units[key]={focus:u.focus,mode:u.mode,study:u.study,quiz:u.quiz};}}
+ for(const key of Object.keys(COLLECTIONS)){const sourceKey=key==='26-47'&&!raw.units?.[key]?'25-47':key;if(raw.units?.[sourceKey]){const u=sanitizeStore({...raw.units[sourceKey],version:1,collection:sourceKey,stats:{},history:[],units:{}});clean.units[key]={focus:u.focus,mode:u.mode,study:u.study,quiz:u.quiz,...(u.archivedStudy?{archivedStudy:u.archivedStudy}:{}),...(u.archivedQuiz?{archivedQuiz:u.archivedQuiz}:{})};}}
  clean.focus=raw.focus==='context'?'details':raw.focus==='artist'?'location':fields.includes(raw.focus)?raw.focus:'material';
  if(raw.archivedStudy&&typeof raw.archivedStudy==='object')clean.archivedStudy=raw.archivedStudy;
  clean.mode=raw.mode==='choice'?'choice':'type';
- for(const w of ALL_WORKS){const saved=raw.stats?.[w.id];if(!saved||typeof saved!=='object')continue;clean.stats[w.id]={};for(const f of fields){const v=saved[f];if(v&&typeof v==='object'){clean.stats[w.id][f]={seen:Math.max(0,Math.min(100000,Number(v.seen)||0)),correct:Math.max(0,Math.min(100000,Number(v.correct)||0)),streak:Math.max(0,Math.min(100000,Number(v.streak)||0)),lastCorrect:v.lastCorrect===true};}}}
+ for(const w of catalog){const saved=raw.stats?.[w.id];if(!saved||typeof saved!=='object')continue;clean.stats[w.id]={};for(const f of fields){const v=saved[f];if(v&&typeof v==='object'){clean.stats[w.id][f]={seen:Math.max(0,Math.min(100000,Number(v.seen)||0)),correct:Math.max(0,Math.min(100000,Number(v.correct)||0)),streak:Math.max(0,Math.min(100000,Number(v.streak)||0)),lastCorrect:v.lastCorrect===true};}}}
  clean.history=Array.isArray(raw.history)?raw.history.slice(0,30).filter(x=>x&&typeof x==='object'):[];
  const s=raw.study;
- if(s&&fields.includes(s.focus)&&Array.isArray(s.queue)&&s.queue.length>0&&s.queue.length<=ALL_WORKS.length*STUDY_FIELDS.length&&s.queue.every(id=>getWork(id))&&Number.isInteger(s.index)&&s.index>=0&&s.index<=s.queue.length){
+ if(s&&fields.includes(s.focus)&&Array.isArray(s.queue)&&s.queue.length>0&&s.queue.length<=catalog.length*STUDY_FIELDS.length&&s.queue.every(id=>getWork(id))&&Number.isInteger(s.index)&&s.index>=0&&s.index<=s.queue.length){
   clean.study={...s,typed:typeof s.typed==='string'?s.typed.slice(0,3000):'',again:Array.isArray(s.again)?s.again.filter(id=>getWork(id)):[],correct:Number(s.correct)||0,filter:s.filter==='missed'?'missed':'all',revealed:!!s.revealed,image:Number.isInteger(s.image)?s.image:0};
   const valid=Array.isArray(s.questions)&&s.questions.length===s.queue.length&&s.questions.every((q,i)=>q?.id===s.queue[i]&&fields.includes(q.field)&&(s.mode!=='choice'||validChoices(getWork(q.id),q.field,q)));
   if(valid){clean.study.mode=s.mode==='choice'?'choice':'type';clean.study.responses=s.responses&&typeof s.responses==='object'?s.responses:{};clean.study.ratings=s.ratings&&typeof s.ratings==='object'?s.ratings:{};}
@@ -166,10 +170,11 @@ export function sanitizeStore(raw){
   const session=clean.study;
   if(session.focus==='context'||session.focus==='artist'){clean.archivedStudy=session;clean.study=null;}
   else{
-   const keepQuestion=question=>fieldAvailable(getWork(question.id),question.field)&&(!legacyClassical||question.id!==25);
+   const keepQuestion=question=>fieldAvailable(getWork(question.id),question.field)&&(!legacyClassical||question.id!==25)&&
+    (clean.collection!=='renaissance'||!retiredIds.has(Number(question.id)));
    const kept=session.questions.map((question,index)=>({question,index})).filter(({question})=>keepQuestion(question));
    if(kept.length!==session.questions.length){
-    session.retiredQuestions=[...(Array.isArray(session.retiredQuestions)?session.retiredQuestions:[]),...session.questions.flatMap((question,index)=>keepQuestion(question)?[]:[{question,rating:session.ratings[index],response:session.responses[index],typed:index===session.index?session.typed:''}])];
+    session.retiredQuestions=[...(Array.isArray(session.retiredQuestions)?session.retiredQuestions:[]),...session.questions.flatMap((question,index)=>keepQuestion(question)?[]:[{question,...(typeof session.ratings[index]==='boolean'?{rating:session.ratings[index]}:{}),...(typeof session.responses[index]==='string'?{response:session.responses[index]}:{}),typed:index===session.index?session.typed:''}])];
     const currentKept=kept.some(({index})=>index===session.index);
     session.index=kept.filter(({index})=>index<session.index).length;
     session.questions=kept.map(x=>x.question);session.queue=session.questions.map(x=>x.id);
@@ -183,7 +188,7 @@ export function sanitizeStore(raw){
  }
  if(clean.study?.mode==='choice')clean.study.questions=clean.study.questions.map((question,index)=>refreshLocationChoices(getWork(question.id),question.field,question,clean.study.responses[index]));
  const q=raw.quiz;
- if(q&&['active','review'].includes(q.status)&&Array.isArray(q.questions)&&q.questions.length>0&&q.questions.length<=ALL_WORKS.length&&new Set(q.questions.map(x=>x.id)).size===q.questions.length&&q.questions.every(x=>getWork(x.id)&&Number.isInteger(x.image)&&getWork(x.id).images[x.image]?.quiz)&&Number.isInteger(q.index)&&q.index>=0&&q.index<q.questions.length&&Number.isFinite(q.startedAt)){
+ if(q&&['active','review'].includes(q.status)&&Array.isArray(q.questions)&&q.questions.length>0&&q.questions.length<=catalog.length&&new Set(q.questions.map(x=>x.id)).size===q.questions.length&&q.questions.every(x=>getWork(x.id)&&Number.isInteger(x.image)&&getWork(x.id).images[x.image]?.quiz)&&Number.isInteger(q.index)&&q.index>=0&&q.index<q.questions.length&&Number.isFinite(q.startedAt)){
   const answers={};for(const question of q.questions){const a=q.answers?.[question.id];answers[question.id]={name:typeof a?.name==='string'?a.name.slice(0,3000):'',material:typeof a?.material==='string'?a.material.slice(0,3000):'',fact:typeof a?.fact==='string'?a.fact.slice(0,3000):'',factField:[...quizFactFields(getWork(question.id)),'artist'].includes(a?.factField)?a.factField:null};if(a?.retiredFact)answers[question.id].retiredFact=a.retiredFact;if(q.status==='active'&&answers[question.id].factField==='artist'&&hasKnownArtist(getWork(question.id)))answers[question.id].factField='location';else if(q.status==='active'&&answers[question.id].factField==='artist'){answers[question.id].retiredFact={fact:answers[question.id].fact,factField:'artist'};answers[question.id].factField='date';answers[question.id].fact='';}}
   const grades={};if(q.status==='review'){for(const question of q.questions){const g=q.grades?.[question.id]??{};grades[question.id]={};for(const field of ['name','material','fact'])grades[question.id][field]=g[field]===true?true:g[field]===false?false:null;}}
   clean.quiz={...q,answers,grades,status:q.status,mode:q.mode==='choice'?'choice':'type',part:[0,1,2].includes(q.part)?q.part:0,timerMinutes:[0,10,15,20].includes(q.timerMinutes)?q.timerMinutes:0,finishedAt:Number.isFinite(q.finishedAt)?q.finishedAt:null,recorded:!!q.recorded};
@@ -192,12 +197,13 @@ export function sanitizeStore(raw){
  if(clean.quiz){
   const quiz=clean.quiz,legacyQuiz=quiz.collection==='25-47'||legacyClassical;
   if(quiz.collection==='25-47')quiz.collection='26-47';
-  if(legacyQuiz&&quiz.status==='active'&&quiz.questions.some(question=>question.id===25)){
-   const previous=quiz.questions,kept=previous.filter(question=>question.id!==25),current=previous[quiz.index];
-   quiz.retiredQuestions=[...(Array.isArray(quiz.retiredQuestions)?quiz.retiredQuestions:[]),...previous.filter(question=>question.id===25).map(question=>({question,answer:quiz.answers[25]}))];
-   quiz.questions=kept;delete quiz.answers[25];
-   quiz.index=Math.min(previous.slice(0,quiz.index).filter(question=>question.id!==25).length,Math.max(0,kept.length-1));
-   if(current.id===25)quiz.part=0;
+  const retired=question=>(legacyQuiz&&question.id===25)||((quiz.collection??clean.collection)==='renaissance'&&retiredIds.has(Number(question.id)));
+  if(quiz.status==='active'&&quiz.questions.some(retired)){
+   const previous=quiz.questions,kept=previous.filter(question=>!retired(question)),current=previous[quiz.index];
+   quiz.retiredQuestions=[...(Array.isArray(quiz.retiredQuestions)?quiz.retiredQuestions:[]),...previous.filter(retired).map(question=>({question,answer:quiz.answers[question.id]}))];
+   quiz.questions=kept;for(const question of previous.filter(retired))delete quiz.answers[question.id];
+   quiz.index=Math.min(previous.slice(0,quiz.index).filter(question=>!retired(question)).length,Math.max(0,kept.length-1));
+   if(retired(current))quiz.part=0;
    if(!kept.length){clean.archivedQuiz=quiz;clean.quiz=null;}
   }
  }
@@ -209,7 +215,7 @@ export function needsPractice(store,id,field){const stats=store.stats[id]??{},wo
 export function materialReadyCount(store){return WORKS.filter(w=>(store.stats[w.id]?.material?.streak??0)>=2).length;}
 export function quizProgress(quiz){return quiz.questions.filter(q=>{const a=quiz.answers[q.id];return a&&a.name.trim()&&a.material.trim()&&a.fact.trim()&&quizFactFields(getWork(q.id)).includes(a.factField);}).length;}
 export function makeQuiz({count=14,ids=WORKS.map(w=>w.id),alternateViews=false,timerMinutes=0,mode='type',factField='date',random=Math.random,collection=null}={}){
- const questions=shuffle(ids,random).slice(0,count).map(id=>{const work=getWork(id);const views=work.images.map((im,i)=>im.quiz?i:null).filter(i=>i!==null);return {id,image:alternateViews?views[Math.floor(random()*views.length)]:0,...(mode==='choice'?{choices:Object.fromEntries(['name','material',...quizFactFields(work)].map(f=>[f,makeChoices(work,f,random,collection)]))}:{})};});
+ const questions=shuffle(ids.filter(id=>activeIds.has(Number(id))),random).slice(0,count).map(id=>{const work=getWork(id);const views=work.images.map((im,i)=>im.quiz?i:null).filter(i=>i!==null);return {id,image:alternateViews?views[Math.floor(random()*views.length)]:0,...(mode==='choice'?{choices:Object.fromEntries(['name','material',...quizFactFields(work)].map(f=>[f,makeChoices(work,f,random,collection)]))}:{})};});
  const answers=Object.fromEntries(questions.map(q=>[q.id,{name:'',material:'',fact:'',factField:factField==='artist'&&hasKnownArtist(getWork(q.id))?'location':quizFactFields(getWork(q.id)).includes(factField)?factField:'date'}]));
  return {id:`quiz-${Date.now()}`,collection,status:'active',questions,index:0,part:0,mode,answers,grades:{},startedAt:Date.now(),finishedAt:null,timerMinutes,alternateViews,recorded:false};
 }
@@ -220,7 +226,8 @@ export function quizScore(quiz){let correct=0,pending=0;for(const question of qu
 // Each collection retains its own in-progress sessions; scores remain keyed by artwork.
 export function switchCollection(store,key){
  if(!Object.hasOwn(COLLECTIONS,key)||store.collection===key)return store;
- store.units??={};store.units[store.collection]={focus:store.focus,mode:store.mode,study:store.study,quiz:store.quiz};
+ store.units??={};store.units[store.collection]={focus:store.focus,mode:store.mode,study:store.study,quiz:store.quiz,...(store.archivedStudy?{archivedStudy:store.archivedStudy}:{}),...(store.archivedQuiz?{archivedQuiz:store.archivedQuiz}:{})};
  const next=store.units[key]??{focus:store.focus,mode:store.mode,study:null,quiz:null};
+ delete store.archivedStudy;delete store.archivedQuiz;
  Object.assign(store,next,{collection:key});return store;
 }
